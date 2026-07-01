@@ -178,9 +178,9 @@
     thai, translit, ru, category: "method", tags: ["подготовка", "способ приготовления", ru]
   }));
 
+  const verifiedMenuItems = Array.isArray(window.verifiedMenuItems) ? window.verifiedMenuItems : [];
   const menuItems = [
-    ...dishItems.slice(0, 750),
-    ...drinkItems.slice(0, 100),
+    ...verifiedMenuItems,
     ...ingredientItems.slice(0, 50),
     ...methodItems.slice(0, 100)
   ];

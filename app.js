@@ -130,55 +130,18 @@ const foods = [
 ];
 
 const menuItems = Array.isArray(window.menuItems) ? window.menuItems : foods;
+const menuCategoryCounts = menuItems.reduce((counts, item) => {
+  counts[item.category] = (counts[item.category] || 0) + 1;
+  return counts;
+}, {});
 const menuCategoryLabels = {
   dish: "Блюдо",
   drink: "Напиток",
   ingredient: "Ингредиент",
   method: "Приготовление"
 };
-const menuPhotoPools = window.menuPhotoPools || {};
-
-function stableTextHash(text) {
-  let hash = 2166136261;
-  for (let index = 0; index < text.length; index += 1) {
-    hash ^= text.charCodeAt(index);
-    hash = Math.imul(hash, 16777619);
-  }
-  return hash >>> 0;
-}
-
-function getMenuPhotoPool(food) {
-  const thai = food.thai;
-  if (food.category === "drink") {
-    if (thai.includes("ปั่น")) return "smoothie";
-    if (thai.includes("ชา")) return "tea";
-    if (thai.includes("กาแฟ") || thai.includes("โอเลี้ยง")) return "coffee";
-    if (thai.includes("มะพร้าว")) return "coconut";
-    if (thai.includes("นม")) return "milk";
-    if (thai.includes("โกโก้")) return "cocoa";
-    return "juice";
-  }
-
-  if (/ก๋วยเตี๋ยว|บะหมี่|วุ้นเส้น|ผัดไทย|ราดหน้า/.test(thai)) return "noodles";
-  if (/แกง|พะแนง|มัสมั่น/.test(thai)) return "curry";
-  if (/ต้ม|โจ๊ก/.test(thai)) return "soup";
-  if (/ยำ|ส้มตำ|ลาบ/.test(thai)) return "salad";
-  if (/กุ้ง|ปู|หอย|ปลาหมึก/.test(thai)) return "seafood";
-  if (thai.includes("ปลา")) return "fish";
-  if (thai.includes("ไก่")) return "chicken";
-  if (thai.includes("หมู")) return "pork";
-  if (thai.includes("เนื้อ")) return "beef";
-  if (/ผัก|เต้าหู้|เห็ด|คะน้า|กะหล่ำ|ฟักทอง|มะเขือ|ถั่ว/.test(thai)) return "vegetables";
-  if (thai.includes("ทอด")) return "fried";
-  if (/ย่าง|ปิ้ง|เผา/.test(thai)) return "grilled";
-  if (thai.includes("ข้าว")) return "rice";
-  return "thaiFood";
-}
-
 function getMenuPhoto(food) {
-  if (food.category !== "dish" && food.category !== "drink") return null;
-  const pool = menuPhotoPools[getMenuPhotoPool(food)] || menuPhotoPools.thaiFood || [];
-  return pool.length ? pool[stableTextHash(food.thai) % pool.length] : null;
+  return food.photo || null;
 }
 
 function escapeMarkup(value = "") {
@@ -356,6 +319,18 @@ const phraseRu = document.querySelector("#phraseRu");
 const markPhrase = document.querySelector("#markPhrase");
 const speechStatus = document.querySelector("#speechStatus");
 
+const categoryOptionLabels = {
+  dish: "Блюда",
+  drink: "Напитки",
+  ingredient: "Ингредиенты",
+  method: "Приготовление"
+};
+foodCategory.querySelector('option[value="all"]').textContent = `Все ${menuItems.length}`;
+Object.entries(categoryOptionLabels).forEach(([category, label]) => {
+  const option = foodCategory.querySelector(`option[value="${category}"]`);
+  if (option) option.textContent = `${label} · ${menuCategoryCounts[category] || 0}`;
+});
+
 let thaiVoice = null;
 let currentUtterance = null;
 let currentAudio = null;
@@ -413,6 +388,10 @@ function speakWithBrowserVoice(text, label = "тайский текст") {
   }, 80);
 }
 
+function audioFileName(text) {
+  return text.replaceAll("/", "／");
+}
+
 function speakThai(text, label = "тайский текст") {
   const cleanText = text.trim();
   if (!cleanText) return;
@@ -435,7 +414,7 @@ function speakThai(text, label = "тайский текст") {
 
   speechStatus.textContent = `Загружаем аудио: ${label}`;
 
-  const url = `audio/${encodeURIComponent(cleanText)}.mp3`;
+  const url = `audio/${encodeURIComponent(audioFileName(cleanText))}.mp3`;
   const audio = new Audio(url);
   audio.preload = "auto";
   let fallbackStarted = false;
@@ -553,7 +532,7 @@ function renderFoods() {
     ? "во всех категориях"
     : `в категории «${menuCategoryLabels[foodCategory.value]}»`;
   menuStats.textContent = items.length === menuItems.length
-    ? `${menuItems.length} позиций: 750 блюд, 100 напитков, 50 ингредиентов и 100 способов приготовления.`
+    ? `${menuItems.length} позиций: ${menuCategoryCounts.dish || 0} блюд, ${menuCategoryCounts.drink || 0} напитков, ${menuCategoryCounts.ingredient || 0} ингредиентов и ${menuCategoryCounts.method || 0} способов приготовления.`
     : `Найдено ${items.length} ${categoryText}. Показано ${shownItems.length}.`;
   foodLoadMore.hidden = shownItems.length >= items.length;
 }

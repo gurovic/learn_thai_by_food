@@ -9,11 +9,16 @@ const appSource = await readFile(path.join(rootDir, "app.js"), "utf8");
 const indexSource = await readFile(path.join(rootDir, "index.html"), "utf8");
 
 globalThis.window = {};
+await import(pathToFileURL(path.join(rootDir, "verified-menu-data.js")));
 await import(pathToFileURL(path.join(rootDir, "menu-data.js")));
 
 const texts = new Set(window.menuItems.map((item) => item.thai));
 const thaiLiteral = /"([^"\r\n]*[\u0E00-\u0E7F][^"\r\n]*)"/gu;
 const onlyThai = /^[\u0E00-\u0E7F\s]+$/u;
+
+function audioFileName(text) {
+  return text.replaceAll("/", "／");
+}
 
 for (const match of appSource.matchAll(thaiLiteral)) {
   const text = match[1].trim();
@@ -59,7 +64,7 @@ async function fileIsReady(filePath) {
 }
 
 async function downloadSpeech(text) {
-  const filePath = path.join(audioDir, `${text}.mp3`);
+  const filePath = path.join(audioDir, `${audioFileName(text)}.mp3`);
   if (await fileIsReady(filePath)) return;
 
   const endpoint = "https://translate.googleapis.com/translate_tts";
@@ -114,7 +119,7 @@ if (failures.length) {
   console.error(failures.join("\n"));
   process.exitCode = 1;
 } else {
-  const activeFiles = new Set(queue.map((text) => `${text}.mp3`));
+  const activeFiles = new Set(queue.map((text) => `${audioFileName(text)}.mp3`));
   const storedFiles = await readdir(audioDir);
   const staleFiles = storedFiles.filter((name) => name.endsWith(".mp3") && !activeFiles.has(name));
   await Promise.all(staleFiles.map((name) => unlink(path.join(audioDir, name))));
