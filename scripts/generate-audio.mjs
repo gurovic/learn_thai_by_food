@@ -1,4 +1,4 @@
-import { access, mkdir, readFile, rename, stat, unlink, writeFile } from "node:fs/promises";
+import { access, mkdir, readdir, readFile, rename, stat, unlink, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
@@ -114,5 +114,9 @@ if (failures.length) {
   console.error(failures.join("\n"));
   process.exitCode = 1;
 } else {
-  console.log(`Audio library ready: ${queue.length} files.`);
+  const activeFiles = new Set(queue.map((text) => `${text}.mp3`));
+  const storedFiles = await readdir(audioDir);
+  const staleFiles = storedFiles.filter((name) => name.endsWith(".mp3") && !activeFiles.has(name));
+  await Promise.all(staleFiles.map((name) => unlink(path.join(audioDir, name))));
+  console.log(`Audio library ready: ${queue.length} files, removed ${staleFiles.length} stale files.`);
 }

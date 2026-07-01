@@ -130,21 +130,13 @@
     ["หน่อไม้", "no mai", "побеги бамбука"], ["ถั่วงอก", "thua ngok", "ростки фасоли"],
     ["ผักบุ้ง", "phak bung", "водяной шпинат"], ["กะหล่ำปลี", "kalam pli", "капуста"], ["แตงกวา", "taeng kwa", "огурец"]
   ];
-  const ingredientForms = [
-    ["", "", ""], ["สด", "sot", "свежий"], ["แห้ง", "haeng", "сушёный"], ["แช่แข็ง", "chae khaeng", "замороженный"]
-  ];
-  const ingredientItems = [];
-  ingredientBases.forEach(([baseThai, baseLatin, baseRu]) => {
-    ingredientForms.forEach(([suffixThai, suffixLatin, suffixRu]) => {
-      ingredientItems.push({
-        thai: `${baseThai}${suffixThai}`,
-        translit: `${baseLatin} ${suffixLatin}`.trim(),
-        ru: suffixRu ? `${baseRu}, ${suffixRu}` : baseRu,
-        category: "ingredient",
-        tags: ["ингредиент", baseRu, suffixRu || "продукт"]
-      });
-    });
-  });
+  const ingredientItems = ingredientBases.map(([thai, translit, ru]) => ({
+    thai,
+    translit,
+    ru,
+    category: "ingredient",
+    tags: ["ингредиент", "продукт", ru]
+  }));
 
   const heatMethods = [
     ["ผัด", "phat", "обжаривать в воке"], ["ทอด", "thot", "жарить"], ["ย่าง", "yang", "готовить на гриле"],
@@ -187,9 +179,9 @@
   }));
 
   const menuItems = [
-    ...dishItems.slice(0, 600),
+    ...dishItems.slice(0, 750),
     ...drinkItems.slice(0, 100),
-    ...ingredientItems.slice(0, 200),
+    ...ingredientItems.slice(0, 50),
     ...methodItems.slice(0, 100)
   ];
 

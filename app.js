@@ -484,7 +484,7 @@ function renderFoods() {
     ? "во всех категориях"
     : `в категории «${menuCategoryLabels[foodCategory.value]}»`;
   menuStats.textContent = items.length === menuItems.length
-    ? `${menuItems.length} позиций: 600 блюд, 100 напитков, 200 ингредиентов и 100 способов приготовления.`
+    ? `${menuItems.length} позиций: 750 блюд, 100 напитков, 50 ингредиентов и 100 способов приготовления.`
     : `Найдено ${items.length} ${categoryText}. Показано ${shownItems.length}.`;
   foodLoadMore.hidden = shownItems.length >= items.length;
 }
