@@ -361,7 +361,8 @@ let currentUtterance = null;
 let currentAudio = null;
 let lastSpeechKey = "";
 let lastSpeechAt = 0;
-let visibleMenuItems = 60;
+const menuPageSize = 24;
+let visibleMenuItems = menuPageSize;
 
 function refreshThaiVoice() {
   if (!("speechSynthesis" in window)) return;
@@ -704,17 +705,17 @@ document.querySelector("#resetProgress").addEventListener("click", () => {
 });
 
 foodSearch.addEventListener("input", () => {
-  visibleMenuItems = 60;
+  visibleMenuItems = menuPageSize;
   renderFoods();
 });
 
 foodCategory.addEventListener("change", () => {
-  visibleMenuItems = 60;
+  visibleMenuItems = menuPageSize;
   renderFoods();
 });
 
 foodLoadMore.addEventListener("click", () => {
-  visibleMenuItems += 60;
+  visibleMenuItems += menuPageSize;
   renderFoods();
 });
 
