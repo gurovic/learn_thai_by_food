@@ -389,7 +389,7 @@ function speakThai(text, label = "тайский текст") {
 
   speechStatus.textContent = `Загружаем аудио: ${label}`;
 
-  const url = `https://translate.googleapis.com/translate_tts?ie=UTF-8&client=gtx&tl=th&q=${encodeURIComponent(cleanText)}`;
+  const url = `audio/${encodeURIComponent(cleanText)}.mp3`;
   const audio = new Audio(url);
   let fallbackStarted = false;
   currentAudio = audio;
@@ -398,7 +398,7 @@ function speakThai(text, label = "тайский текст") {
     if (fallbackStarted || currentAudio !== audio) return;
     fallbackStarted = true;
     currentAudio = null;
-    speechStatus.textContent = "Онлайн-аудио не загрузилось, пробую голос Chrome.";
+    speechStatus.textContent = "Аудиофайл не найден, пробую голос Chrome.";
     speakWithBrowserVoice(cleanText, label);
   };
 
