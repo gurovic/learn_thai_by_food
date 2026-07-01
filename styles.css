@@ -603,6 +603,31 @@ h3 {
   font-size: 13px;
 }
 
+.menu-tools {
+  display: flex;
+  gap: 10px;
+  align-items: end;
+  flex-wrap: wrap;
+}
+
+.category-filter {
+  display: grid;
+  gap: 6px;
+  min-width: 190px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.category-filter select {
+  min-height: 42px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0 34px 0 12px;
+  color: var(--ink);
+  background: var(--surface);
+}
+
 .search-box input,
 select {
   width: 100%;
@@ -622,6 +647,47 @@ select {
 .food-card .thai-name {
   font-size: 30px;
   font-weight: 900;
+}
+
+.menu-category {
+  display: inline-flex;
+  width: max-content;
+  margin-top: 10px;
+  border-radius: 4px;
+  padding: 3px 7px;
+  color: #fff;
+  background: var(--leaf);
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.menu-category-drink {
+  background: var(--water);
+}
+
+.menu-category-ingredient {
+  color: var(--ink);
+  background: var(--broth);
+}
+
+.menu-category-method {
+  background: var(--chili);
+}
+
+.load-more {
+  display: block;
+  min-width: 180px;
+  min-height: 42px;
+  margin: 20px auto 0;
+  border: 1px solid var(--leaf);
+  border-radius: 8px;
+  color: var(--leaf);
+  background: var(--surface);
+  font-weight: 800;
+}
+
+.load-more[hidden] {
+  display: none;
 }
 
 .tag-row {

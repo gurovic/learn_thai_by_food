@@ -129,6 +129,14 @@ const foods = [
   { thai: "น้ำมะพร้าว", translit: "nam ma phrao", ru: "кокосовая вода", tags: ["напиток", "кокос", "жара"] }
 ];
 
+const menuItems = Array.isArray(window.menuItems) ? window.menuItems : foods;
+const menuCategoryLabels = {
+  dish: "Блюдо",
+  drink: "Напиток",
+  ingredient: "Ингредиент",
+  method: "Приготовление"
+};
+
 const phraseBreakdowns = {
   "ข้าวผัด": [
     { thai: "ข้าว", translit: "khao", ru: "рис" },
@@ -279,6 +287,10 @@ const letterGrid = document.querySelector("#letterGrid");
 const markGrid = document.querySelector("#markGrid");
 const toneGuideGrid = document.querySelector("#toneGuideGrid");
 const foodGrid = document.querySelector("#foodGrid");
+const foodSearch = document.querySelector("#foodSearch");
+const foodCategory = document.querySelector("#foodCategory");
+const foodLoadMore = document.querySelector("#foodLoadMore");
+const menuStats = document.querySelector("#menuStats");
 const progressFill = document.querySelector("#progressFill");
 const progressPercent = document.querySelector("#progressPercent");
 const progressText = document.querySelector("#progressText");
@@ -297,6 +309,7 @@ let currentUtterance = null;
 let currentAudio = null;
 let lastSpeechKey = "";
 let lastSpeechAt = 0;
+let visibleMenuItems = 60;
 
 function refreshThaiVoice() {
   if (!("speechSynthesis" in window)) return;
@@ -443,8 +456,22 @@ function renderLetters() {
   }).join("");
 }
 
-function renderFoods(items = foods) {
-  foodGrid.innerHTML = items.map((food) => `
+function getFilteredMenuItems() {
+  const query = foodSearch.value.trim().toLowerCase();
+  const category = foodCategory.value;
+
+  return menuItems.filter((food) => {
+    if (category !== "all" && food.category !== category) return false;
+    if (!query) return true;
+    const text = `${food.thai} ${food.translit} ${food.ru} ${food.tags.join(" ")}`.toLowerCase();
+    return text.includes(query);
+  });
+}
+
+function renderFoods() {
+  const items = getFilteredMenuItems();
+  const shownItems = items.slice(0, visibleMenuItems);
+  foodGrid.innerHTML = shownItems.map((food) => `
     <article class="food-card">
       <div class="speak-line">
         <p class="thai-name">${food.thai}</p>
@@ -452,11 +479,20 @@ function renderFoods(items = foods) {
       </div>
       <h4>${food.ru}</h4>
       <p class="meta">${food.translit}</p>
+      <span class="menu-category menu-category-${food.category || "dish"}">${menuCategoryLabels[food.category] || "Блюдо"}</span>
       <div class="tag-row">
         ${food.tags.map((tag) => `<span class="tag">${tag}</span>`).join("")}
       </div>
     </article>
   `).join("");
+
+  const categoryText = foodCategory.value === "all"
+    ? "во всех категориях"
+    : `в категории «${menuCategoryLabels[foodCategory.value]}»`;
+  menuStats.textContent = items.length === menuItems.length
+    ? `${menuItems.length} позиций: 600 блюд, 100 напитков, 200 ингредиентов и 100 способов приготовления.`
+    : `Найдено ${items.length} ${categoryText}. Показано ${shownItems.length}.`;
+  foodLoadMore.hidden = shownItems.length >= items.length;
 }
 
 function renderMarks() {
@@ -605,13 +641,19 @@ document.querySelector("#resetProgress").addEventListener("click", () => {
   updateProgress();
 });
 
-document.querySelector("#foodSearch").addEventListener("input", (event) => {
-  const query = event.target.value.trim().toLowerCase();
-  const results = foods.filter((food) => {
-    const text = `${food.thai} ${food.translit} ${food.ru} ${food.tags.join(" ")}`.toLowerCase();
-    return text.includes(query);
-  });
-  renderFoods(results);
+foodSearch.addEventListener("input", () => {
+  visibleMenuItems = 60;
+  renderFoods();
+});
+
+foodCategory.addEventListener("change", () => {
+  visibleMenuItems = 60;
+  renderFoods();
+});
+
+foodLoadMore.addEventListener("click", () => {
+  visibleMenuItems += 60;
+  renderFoods();
 });
 
 [orderDish, spiceLevel, orderRequest].forEach((control) => {
