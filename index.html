@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Thai Menu Reader</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="workspace" aria-label="Thai Menu Reader">
+        <aside class="sidebar">
+          <div class="brand">
+            <div class="brand-mark" aria-hidden="true">ก</div>
+            <div>
+              <h1>Thai Menu Reader</h1>
+              <p>Тайские буквы через еду, напитки и реальные фразы заказа.</p>
+            </div>
+          </div>
+
+          <nav class="mode-tabs" aria-label="Режимы обучения">
+            <button class="tab is-active" data-view="letters" type="button">Буквы</button>
+            <button class="tab" data-view="marks" type="button">Знаки</button>
+            <button class="tab" data-view="foods" type="button">Меню</button>
+            <button class="tab" data-view="order" type="button">Заказ</button>
+          </nav>
+
+          <div class="progress-panel">
+            <div class="progress-row">
+              <span>Прогресс</span>
+              <strong id="progressPercent">0%</strong>
+            </div>
+            <div class="progress-bar" aria-hidden="true">
+              <span id="progressFill"></span>
+            </div>
+            <p id="progressText">Начни с первой согласной: ก помогает читать слова про курицу, рис и лапшу.</p>
+          </div>
+        </aside>
+
+        <section class="content">
+          <section class="hero-strip">
+            <div>
+              <span class="eyebrow">тайский через меню</span>
+              <h2>Буквы, знаки и блюда для чтения меню</h2>
+              <p class="hero-copy">Короткие карточки помогают узнавать тайские слова в кафе, на рынках и в доставке.</p>
+            </div>
+            <div class="dish-board" aria-label="Мини-галерея блюд">
+              <div class="dish-tile soup"><span class="dish-hero-icon">🍜</span><span>ก๋วยเตี๋ยว</span><small>лапша</small></div>
+              <div class="dish-tile rice"><span class="dish-hero-icon">🍚</span><span>ข้าวผัด</span><small>рис</small></div>
+              <div class="dish-tile tea"><span class="dish-hero-icon">🧋</span><span>ชาเย็น</span><small>чай</small></div>
+            </div>
+          </section>
+
+          <section id="letters" class="view is-active">
+            <div class="section-head">
+              <div>
+                <h3>Все согласные</h3>
+                <p>44 тайские согласные с традиционными именами, классом, звуком и примером из еды, рынка или базового словаря.</p>
+              </div>
+              <button id="resetProgress" class="ghost-button" type="button">Сбросить</button>
+            </div>
+            <div id="letterGrid" class="letter-grid"></div>
+          </section>
+
+          <section id="marks" class="view">
+            <div class="section-head">
+              <div>
+                <h3>Гласные и знаки</h3>
+                <p>Тайские гласные и служебные знаки могут стоять перед, после, над или под согласной. Учим их на словах из меню.</p>
+              </div>
+            </div>
+            <div class="tone-guide" aria-label="Пять основных тайских тонов">
+              <div class="tone-guide-text">
+                <span class="eyebrow">ход интонации</span>
+                <h4>Пять тонов на графике</h4>
+                <p>Линия показывает примерное движение голоса: ровно, низко, сверху вниз, высоко или снизу вверх.</p>
+              </div>
+              <div id="toneGuideGrid" class="tone-guide-grid"></div>
+            </div>
+            <div id="markGrid" class="mark-grid"></div>
+          </section>
+
+          <section id="foods" class="view">
+            <div class="section-head">
+              <div>
+                <h3>Мини-меню</h3>
+                <p>Собирай словарь из блюд, напитков и полезных слов для рынка.</p>
+              </div>
+              <label class="search-box">
+                <span>Поиск</span>
+                <input id="foodSearch" type="search" placeholder="лапша, spicy, ชา">
+              </label>
+            </div>
+            <div id="foodGrid" class="food-grid"></div>
+          </section>
+
+          <section id="order" class="view">
+            <div class="section-head">
+              <div>
+                <h3>Собери заказ</h3>
+                <p>Выбери блюдо, степень остроты и короткую просьбу, затем прочитай фразу целиком.</p>
+              </div>
+            </div>
+
+            <div class="order-layout">
+              <div class="order-controls">
+                <label>
+                  <span>Блюдо</span>
+                  <select id="orderDish"></select>
+                </label>
+                <label>
+                  <span>Острота</span>
+                  <select id="spiceLevel">
+                    <option value="ไม่เผ็ด">не остро</option>
+                    <option value="เผ็ดน้อย">немного остро</option>
+                    <option value="เผ็ดกลาง">средне остро</option>
+                    <option value="เผ็ดมาก">очень остро</option>
+                  </select>
+                </label>
+                <label>
+                  <span>Просьба</span>
+                  <select id="orderRequest">
+                    <option value="ใส่ถุง">с собой</option>
+                    <option value="กินที่นี่">здесь</option>
+                    <option value="ไม่ใส่น้ำตาล">без сахара</option>
+                    <option value="ไม่ใส่ผงชูรส">без глутамата</option>
+                  </select>
+                </label>
+              </div>
+              <div class="phrase-card">
+                <span class="eyebrow">фраза для заказа</span>
+                <p id="thaiPhrase" class="thai-phrase"></p>
+                <div id="phraseBreakdown" class="phrase-breakdown" aria-label="Перевод слов во фразе"></div>
+                <p id="phraseTranslit" class="translit"></p>
+                <p id="phraseRu" class="phrase-ru"></p>
+                <div class="phrase-actions">
+                  <button id="speakPhrase" class="speak-phrase-button" type="button" aria-label="Произнести фразу заказа">🔊</button>
+                  <button id="markPhrase" class="primary-button" type="button">Я могу это прочитать</button>
+                </div>
+                <p id="speechStatus" class="speech-status" aria-live="polite">Нажми на динамик, чтобы услышать произношение.</p>
+              </div>
+            </div>
+          </section>
+        </section>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
