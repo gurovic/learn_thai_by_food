@@ -376,9 +376,18 @@ function speakThai(text, label = "тайский текст") {
 
   speechStatus.textContent = `Загружаем аудио: ${label}`;
 
-  const url = `https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=th&q=${encodeURIComponent(cleanText)}`;
+  const url = `https://translate.googleapis.com/translate_tts?ie=UTF-8&client=gtx&tl=th&q=${encodeURIComponent(cleanText)}`;
   const audio = new Audio(url);
+  let fallbackStarted = false;
   currentAudio = audio;
+
+  const startFallback = () => {
+    if (fallbackStarted || currentAudio !== audio) return;
+    fallbackStarted = true;
+    currentAudio = null;
+    speechStatus.textContent = "Онлайн-аудио не загрузилось, пробую голос Chrome.";
+    speakWithBrowserVoice(cleanText, label);
+  };
 
   audio.onplaying = () => {
     speechStatus.textContent = `Слушаем: ${label}`;
@@ -386,17 +395,11 @@ function speakThai(text, label = "тайский текст") {
   audio.onended = () => {
     speechStatus.textContent = "Готово. Можно повторить еще раз.";
   };
-  audio.onerror = () => {
-    speechStatus.textContent = "Онлайн-аудио не загрузилось, пробую голос Chrome.";
-    speakWithBrowserVoice(cleanText, label);
-  };
+  audio.onerror = startFallback;
 
   const playPromise = audio.play();
   if (playPromise) {
-    playPromise.catch(() => {
-      speechStatus.textContent = "Chrome заблокировал онлайн-аудио, пробую голос Chrome.";
-      speakWithBrowserVoice(cleanText, label);
-    });
+    playPromise.catch(startFallback);
   }
 }
 
