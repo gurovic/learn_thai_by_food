@@ -1,16 +1,16 @@
 (function buildMenuData() {
   const dishMethods = [
-    ["ผัด", "phat", "обжаривание в воке"], ["ทอด", "thot", "жарка во фритюре"],
-    ["ย่าง", "yang", "гриль"], ["นึ่ง", "nueng", "на пару"],
-    ["ต้ม", "tom", "варка"], ["อบ", "op", "запекание"],
-    ["ลวก", "luak", "быстрое отваривание"], ["คั่ว", "khua", "сухая обжарка"],
-    ["ผัดกะเพรา", "phat kaphrao", "обжаривание с базиликом"],
-    ["ผัดกระเทียม", "phat krathiam", "обжаривание с чесноком"],
-    ["ผัดพริกแกง", "phat phrik kaeng", "обжаривание с пастой карри"],
-    ["ผัดขิง", "phat khing", "обжаривание с имбирём"],
-    ["ทอดกระเทียม", "thot krathiam", "жарка с чесноком"],
-    ["ย่างเกลือ", "yang kluea", "гриль с солью"],
-    ["นึ่งมะนาว", "nueng manao", "на пару с лаймом"]
+    ["ผัด", "phat", "обжаривание в воке", false], ["ทอด", "thot", "жарка во фритюре", true],
+    ["ย่าง", "yang", "гриль", true], ["นึ่ง", "nueng", "на пару", true],
+    ["ต้ม", "tom", "варка", false], ["อบ", "op", "запекание", true],
+    ["ลวก", "luak", "быстрое отваривание", true], ["คั่ว", "khua", "сухая обжарка", false],
+    ["ผัดกะเพรา", "phat kaphrao", "обжаривание с базиликом", false],
+    ["ผัดกระเทียม", "phat krathiam", "обжаривание с чесноком", true],
+    ["ผัดพริกแกง", "phat phrik kaeng", "обжаривание с пастой карри", false],
+    ["ผัดขิง", "phat khing", "обжаривание с имбирём", true],
+    ["ทอดกระเทียม", "thot krathiam", "жарка с чесноком", true],
+    ["ย่างเกลือ", "yang kluea", "гриль с солью", true],
+    ["นึ่งมะนาว", "nueng manao", "на пару с лаймом", true]
   ];
 
   const dishIngredients = [
@@ -37,7 +37,7 @@
   const curryBases = [
     ["แกงเขียวหวาน", "kaeng khiao wan", "зелёное карри"], ["แกงเผ็ด", "kaeng phet", "красное карри"],
     ["แกงพะแนง", "kaeng phanaeng", "карри пананг"], ["แกงมัสมั่น", "kaeng matsaman", "карри массаман"],
-    ["แกงกะหรี่", "kaeng kari", "жёлтое карри"], ["ต้มข่า", "tom kha", "кокосовый суп с галангалом"]
+    ["แกงกะหรี่", "kaeng kari", "жёлтое карри"], ["ต้มข่า", "tom kha", "суп том-кха"]
   ];
 
   const dishItems = [];
@@ -60,8 +60,10 @@
   ].forEach((item) => addDish(...item));
 
   dishIngredients.forEach(([ingredientThai, ingredientLatin, ingredientRu]) => {
-    dishMethods.forEach(([methodThai, methodLatin, methodRu]) => {
-      addDish(`${methodThai}${ingredientThai}`, `${methodLatin} ${ingredientLatin}`, `${methodRu}: ${ingredientRu}`, [methodRu, ingredientRu, "блюдо"]);
+    dishMethods.forEach(([methodThai, methodLatin, methodRu, ingredientFirst]) => {
+      const thai = ingredientFirst ? `${ingredientThai}${methodThai}` : `${methodThai}${ingredientThai}`;
+      const translit = ingredientFirst ? `${ingredientLatin} ${methodLatin}` : `${methodLatin} ${ingredientLatin}`;
+      addDish(thai, translit, `Блюдо с ${ingredientRu}: ${methodRu}`, [methodRu, ingredientRu, "блюдо"]);
     });
     dishBases.forEach(([baseThai, baseLatin, baseRu]) => {
       addDish(`${baseThai}${ingredientThai}`, `${baseLatin} ${ingredientLatin}`, `${baseRu} с ${ingredientRu}`, [baseRu, ingredientRu, "кафе"]);
