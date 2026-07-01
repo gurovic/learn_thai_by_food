@@ -644,6 +644,52 @@ select {
   padding: 16px;
 }
 
+.food-card.has-photo {
+  overflow: hidden;
+  padding-top: 0;
+}
+
+.food-photo {
+  position: relative;
+  width: calc(100% + 32px);
+  aspect-ratio: 12 / 7;
+  margin: 0 -16px 14px;
+  overflow: hidden;
+  background: #e8ece4;
+}
+
+.food-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.food-photo figcaption {
+  position: absolute;
+  right: 6px;
+  bottom: 6px;
+  max-width: calc(100% - 12px);
+  border-radius: 4px;
+  padding: 3px 5px;
+  overflow: hidden;
+  color: #fff;
+  background: rgba(20, 29, 22, 0.72);
+  font-size: 9px;
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.food-photo figcaption a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.food-photo.is-broken {
+  display: none;
+}
+
 .food-card .thai-name {
   font-size: 30px;
   font-weight: 900;

@@ -136,6 +136,58 @@ const menuCategoryLabels = {
   ingredient: "Ингредиент",
   method: "Приготовление"
 };
+const menuPhotoPools = window.menuPhotoPools || {};
+
+function stableTextHash(text) {
+  let hash = 2166136261;
+  for (let index = 0; index < text.length; index += 1) {
+    hash ^= text.charCodeAt(index);
+    hash = Math.imul(hash, 16777619);
+  }
+  return hash >>> 0;
+}
+
+function getMenuPhotoPool(food) {
+  const thai = food.thai;
+  if (food.category === "drink") {
+    if (thai.includes("ปั่น")) return "smoothie";
+    if (thai.includes("ชา")) return "tea";
+    if (thai.includes("กาแฟ") || thai.includes("โอเลี้ยง")) return "coffee";
+    if (thai.includes("มะพร้าว")) return "coconut";
+    if (thai.includes("นม")) return "milk";
+    if (thai.includes("โกโก้")) return "cocoa";
+    return "juice";
+  }
+
+  if (/ก๋วยเตี๋ยว|บะหมี่|วุ้นเส้น|ผัดไทย|ราดหน้า/.test(thai)) return "noodles";
+  if (/แกง|พะแนง|มัสมั่น/.test(thai)) return "curry";
+  if (/ต้ม|โจ๊ก/.test(thai)) return "soup";
+  if (/ยำ|ส้มตำ|ลาบ/.test(thai)) return "salad";
+  if (/กุ้ง|ปู|หอย|ปลาหมึก/.test(thai)) return "seafood";
+  if (thai.includes("ปลา")) return "fish";
+  if (thai.includes("ไก่")) return "chicken";
+  if (thai.includes("หมู")) return "pork";
+  if (thai.includes("เนื้อ")) return "beef";
+  if (/ผัก|เต้าหู้|เห็ด|คะน้า|กะหล่ำ|ฟักทอง|มะเขือ|ถั่ว/.test(thai)) return "vegetables";
+  if (thai.includes("ทอด")) return "fried";
+  if (/ย่าง|ปิ้ง|เผา/.test(thai)) return "grilled";
+  if (thai.includes("ข้าว")) return "rice";
+  return "thaiFood";
+}
+
+function getMenuPhoto(food) {
+  if (food.category !== "dish" && food.category !== "drink") return null;
+  const pool = menuPhotoPools[getMenuPhotoPool(food)] || menuPhotoPools.thaiFood || [];
+  return pool.length ? pool[stableTextHash(food.thai) % pool.length] : null;
+}
+
+function escapeMarkup(value = "") {
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;");
+}
 
 const phraseBreakdowns = {
   "ข้าวผัด": [
@@ -465,8 +517,19 @@ function getFilteredMenuItems() {
 function renderFoods() {
   const items = getFilteredMenuItems();
   const shownItems = items.slice(0, visibleMenuItems);
-  foodGrid.innerHTML = shownItems.map((food) => `
-    <article class="food-card">
+  foodGrid.innerHTML = shownItems.map((food) => {
+    const photo = getMenuPhoto(food);
+    const photoCredit = photo
+      ? [photo.author, photo.license].filter(Boolean).join(" · ") || "Wikimedia Commons"
+      : "";
+    return `
+    <article class="food-card ${photo ? "has-photo" : ""}">
+      ${photo ? `
+        <figure class="food-photo">
+          <img src="${escapeMarkup(photo.url)}" alt="${escapeMarkup(food.ru)}" loading="lazy" decoding="async" width="720" height="420">
+          <figcaption><a href="${escapeMarkup(photo.page)}" target="_blank" rel="noopener noreferrer" title="${escapeMarkup(photo.title)}">${escapeMarkup(photoCredit)}</a></figcaption>
+        </figure>
+      ` : ""}
       <div class="speak-line">
         <p class="thai-name">${food.thai}</p>
         <button class="speak-button" data-speak="${food.thai}" data-label="${food.thai}" type="button" aria-label="Произнести ${food.thai}">🔊</button>
@@ -478,7 +541,12 @@ function renderFoods() {
         ${food.tags.map((tag) => `<span class="tag">${tag}</span>`).join("")}
       </div>
     </article>
-  `).join("");
+  `;
+  }).join("");
+
+  foodGrid.querySelectorAll(".food-photo img").forEach((image) => {
+    image.addEventListener("error", () => image.closest(".food-photo")?.classList.add("is-broken"), { once: true });
+  });
 
   const categoryText = foodCategory.value === "all"
     ? "во всех категориях"
