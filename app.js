@@ -320,15 +320,8 @@ function refreshThaiVoice() {
 
 function updateSpeechStatus() {
   if (!speechStatus) return;
-  if (!("speechSynthesis" in window)) {
-    speechStatus.textContent = "Chrome не дал доступ к синтезу речи в этой вкладке.";
-    return;
-  }
-
   refreshThaiVoice();
-  speechStatus.textContent = thaiVoice
-    ? `Тайский голос найден: ${thaiVoice.name}. Нажми на динамик.`
-    : "Тайский голос пока не найден. Chrome попробует системный голос, но лучше добавить Thai voice в Windows.";
+  speechStatus.textContent = "Озвучка готова. Нажми на динамик рядом с тайским текстом.";
 }
 
 function speakWithBrowserVoice(text, label = "тайский текст") {
@@ -391,6 +384,7 @@ function speakThai(text, label = "тайский текст") {
 
   const url = `audio/${encodeURIComponent(cleanText)}.mp3`;
   const audio = new Audio(url);
+  audio.preload = "auto";
   let fallbackStarted = false;
   currentAudio = audio;
 
