@@ -46,10 +46,13 @@ function plainText(html = "") {
 }
 
 function photoFromCell(html) {
-  const source = html.match(/<img[^>]+src="([^"]+)"/i)?.[1];
+  const sourceSet = html.match(/<img[^>]+srcset="([^"]+)"/i)?.[1];
+  const source = sourceSet
+    ? sourceSet.split(",").at(-1).trim().split(/\s+/)[0]
+    : html.match(/<img[^>]+src="([^"]+)"/i)?.[1];
   const fileLink = html.match(/href="([^"]*\/wiki\/File:[^"]+)"/i)?.[1];
   if (!source || !fileLink) return null;
-  const url = `https:${decodeHtml(source)}`.replace(/\/\d+px-/, "/720px-");
+  const url = `https:${decodeHtml(source)}`;
   return {
     url,
     page: `https://commons.wikimedia.org${decodeHtml(fileLink)}`,
@@ -81,7 +84,9 @@ for (let index = 0; index < headings.length; index += 1) {
     if (cells.length < 4) continue;
     const translit = plainText(cells[0]);
     const thai = plainText(cells[1]);
-    const english = plainText(cells[2]) || translit;
+    const englishName = plainText(cells[2]) || translit;
+    const englishDescription = plainText(cells[5] || cells.at(-1));
+    const english = englishDescription || englishName;
     const photo = photoFromCell(cells[3]);
     if (!photo || !/[\u0E00-\u0E7F]/u.test(thai) || seenThai.has(thai)) continue;
     seenThai.add(thai);
@@ -94,6 +99,64 @@ for (let index = 0; index < headings.length; index += 1) {
       photo
     });
   }
+}
+
+const supplementalDrinks = [
+  {
+    thai: "โอเลี้ยง",
+    translit: "oliang",
+    ru: "тайский холодный черный кофе со льдом и сахарным сиропом",
+    photo: {
+      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Oliang_%E0%B9%82%E0%B8%AD%E0%B9%80%E0%B8%A5%E0%B8%B5%E0%B9%89%E0%B8%A2%E0%B8%87_oleang_olieng_Thai_iced_coffee_at_Ayutthaya.jpg/250px-Oliang_%E0%B9%82%E0%B8%AD%E0%B9%80%E0%B8%A5%E0%B8%B5%E0%B9%89%E0%B8%A2%E0%B8%87_oleang_olieng_Thai_iced_coffee_at_Ayutthaya.jpg",
+      page: "https://commons.wikimedia.org/wiki/File:Oliang_%E0%B9%82%E0%B8%AD%E0%B9%80%E0%B8%A5%E0%B8%B5%E0%B9%89%E0%B8%A2%E0%B8%87_oleang_olieng_Thai_iced_coffee_at_Ayutthaya.jpg",
+      title: "Oliang Thai iced coffee at Ayutthaya.jpg"
+    }
+  },
+  {
+    thai: "ชามะนาว",
+    translit: "cha manao",
+    ru: "холодный черный чай с соком лайма, сахаром и льдом",
+    photo: {
+      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Lemon_tea_2.jpg/250px-Lemon_tea_2.jpg",
+      page: "https://commons.wikimedia.org/wiki/File:Lemon_tea_2.jpg",
+      title: "Lemon tea 2.jpg"
+    }
+  },
+  {
+    thai: "น้ำเก๊กฮวย",
+    translit: "nam kek huai",
+    ru: "сладкий охлажденный настой цветков хризантемы",
+    photo: {
+      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Chrysanthemum_tea.JPG/250px-Chrysanthemum_tea.JPG",
+      page: "https://commons.wikimedia.org/wiki/File:Chrysanthemum_tea.JPG",
+      title: "Chrysanthemum tea.JPG"
+    }
+  },
+  {
+    thai: "น้ำมะพร้าว",
+    translit: "nam maprao",
+    ru: "охлажденная кокосовая вода из молодого кокоса",
+    photo: {
+      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/JP_%E6%B2%96%E7%B9%A9_Okinawa_%E4%BA%9E%E6%B4%B2%E8%88%AA%E7%A9%BA_AirAsia_flying_to_HKG_%E9%A3%9B%E6%A9%9F%E9%A4%90_in-flight_meal_Thail_food_product_Tipco_F%26B_Co_coconut_water_drink_box_February_2026_N13P_01.jpg/250px-JP_%E6%B2%96%E7%B9%A9_Okinawa_%E4%BA%9E%E6%B4%B2%E8%88%AA%E7%A9%BA_AirAsia_flying_to_HKG_%E9%A3%9B%E6%A9%9F%E9%A4%90_in-flight_meal_Thail_food_product_Tipco_F%26B_Co_coconut_water_drink_box_February_2026_N13P_01.jpg",
+      page: "https://commons.wikimedia.org/wiki/File:JP_%E6%B2%96%E7%B9%A9_Okinawa_%E4%BA%9E%E6%B4%B2%E8%88%AA%E7%A9%BA_AirAsia_flying_to_HKG_%E9%A3%9B%E6%A9%9F%E9%A4%90_in-flight_meal_Thail_food_product_Tipco_F%26B_Co_coconut_water_drink_box_February_2026_N13P_01.jpg",
+      title: "Thai coconut water drink box.jpg"
+    }
+  }
+];
+
+const russianOverrides = {
+  "น้ำพันช์": "ледяной фруктовый пунш, иногда с добавлением алкоголя"
+};
+
+for (const drink of supplementalDrinks) {
+  if (seenThai.has(drink.thai)) continue;
+  seenThai.add(drink.thai);
+  entries.push({
+    ...drink,
+    category: "drink",
+    section: "Напитки",
+    photo: { ...drink.photo, author: "Wikimedia Commons", license: "источник" }
+  });
 }
 
 let translations = {};
@@ -132,7 +195,7 @@ async function worker() {
   while (cursor < entries.length) {
     const entry = entries[cursor];
     cursor += 1;
-    entry.ru = await translate(entry.english);
+    entry.ru = russianOverrides[entry.thai] || entry.ru || await translate(entry.english);
     entry.tags = [entry.section, entry.category === "drink" ? "напиток" : "тайское блюдо"];
     delete entry.english;
     delete entry.section;
@@ -142,6 +205,14 @@ async function worker() {
 
 await Promise.all(Array.from({ length: 3 }, () => worker()));
 await writeFile(cachePath, JSON.stringify(translations, null, 2), "utf8");
+entries.forEach((entry, index) => {
+  const remoteUrl = entry.photo.url;
+  const extension = remoteUrl.match(/\.([a-z0-9]+)(?:\/[^/]*)?$/i)?.[1]?.toLowerCase() || "jpg";
+  const safeExtension = ["jpg", "jpeg", "png", "gif", "webp", "svg"].includes(extension) ? extension : "jpg";
+  const filename = `${String(index + 1).padStart(3, "0")}.${safeExtension}`;
+  entry.photo.remoteUrl = remoteUrl;
+  entry.photo.url = `images/menu/${filename}`;
+});
 const output = `window.verifiedMenuItems = ${JSON.stringify(entries, null, 2)};\n`;
 await writeFile(path.join(rootDir, "verified-menu-data.js"), output, "utf8");
 
