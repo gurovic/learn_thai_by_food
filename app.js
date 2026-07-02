@@ -353,6 +353,22 @@ const phraseBreakdown = document.querySelector("#phraseBreakdown");
 const phraseRu = document.querySelector("#phraseRu");
 const markPhrase = document.querySelector("#markPhrase");
 const speechStatus = document.querySelector("#speechStatus");
+const practiceItems = menuItems.filter((item) => item.category === "dish" && item.photo && item.translit);
+const practiceImage = document.querySelector("#practiceImage");
+const practiceThai = document.querySelector("#practiceThai");
+const practiceRu = document.querySelector("#practiceRu");
+const practiceForm = document.querySelector("#practiceForm");
+const practiceAnswer = document.querySelector("#practiceAnswer");
+const practiceResult = document.querySelector("#practiceResult");
+const practiceScore = document.querySelector("#practiceScore");
+const practiceExpected = document.querySelector("#practiceExpected");
+const practiceAttempts = document.querySelector("#practiceAttempts");
+const practiceAverage = document.querySelector("#practiceAverage");
+const practiceNext = document.querySelector("#practiceNext");
+let currentPracticeItem = null;
+let lastPracticeIndex = -1;
+let practiceTotalScore = 0;
+let practiceAttemptCount = 0;
 
 const categoryOptionLabels = {
   dish: "Блюда",
@@ -575,6 +591,69 @@ function getMenuWordBlocks(food) {
   });
 }
 
+function normalizedTranscription(value) {
+  return value
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]/g, "");
+}
+
+function transcriptionScore(answer, expected) {
+  const left = normalizedTranscription(answer);
+  const right = normalizedTranscription(expected);
+  if (!right) return 0;
+  const previous = Array.from({ length: right.length + 1 }, (_, index) => index);
+  for (let leftIndex = 1; leftIndex <= left.length; leftIndex += 1) {
+    const current = [leftIndex];
+    for (let rightIndex = 1; rightIndex <= right.length; rightIndex += 1) {
+      const substitution = previous[rightIndex - 1] + (left[leftIndex - 1] === right[rightIndex - 1] ? 0 : 1);
+      current[rightIndex] = Math.min(previous[rightIndex] + 1, current[rightIndex - 1] + 1, substitution);
+    }
+    previous.splice(0, previous.length, ...current);
+  }
+  const distance = previous[right.length];
+  return Math.max(0, Math.round((1 - distance / Math.max(left.length, right.length)) * 100));
+}
+
+function renderPracticeItem() {
+  if (!practiceItems.length) return;
+  let nextIndex = Math.floor(Math.random() * practiceItems.length);
+  if (practiceItems.length > 1 && nextIndex === lastPracticeIndex) {
+    nextIndex = (nextIndex + 1) % practiceItems.length;
+  }
+  lastPracticeIndex = nextIndex;
+  currentPracticeItem = practiceItems[nextIndex];
+  const photo = getMenuPhoto(currentPracticeItem);
+  practiceImage.src = photo.url;
+  practiceImage.alt = currentPracticeItem.ru;
+  practiceThai.textContent = currentPracticeItem.thai;
+  practiceRu.textContent = currentPracticeItem.ru;
+  practiceAnswer.value = "";
+  practiceAnswer.disabled = false;
+  practiceForm.querySelector("button").disabled = false;
+  practiceResult.hidden = true;
+}
+
+function checkPracticeAnswer() {
+  if (!currentPracticeItem || !practiceAnswer.value.trim()) {
+    practiceAnswer.focus();
+    return;
+  }
+  const score = transcriptionScore(practiceAnswer.value, currentPracticeItem.translit);
+  practiceAttemptCount += 1;
+  practiceTotalScore += score;
+  practiceScore.textContent = `${score}% правильных букв`;
+  practiceScore.dataset.level = score === 100 ? "perfect" : score >= 70 ? "close" : "retry";
+  practiceExpected.textContent = currentPracticeItem.translit;
+  practiceAttempts.textContent = practiceAttemptCount;
+  practiceAverage.textContent = `${Math.round(practiceTotalScore / practiceAttemptCount)}%`;
+  practiceResult.hidden = false;
+  practiceAnswer.disabled = true;
+  practiceForm.querySelector("button").disabled = true;
+  practiceNext.focus();
+}
+
 function renderFoods() {
   const items = getFilteredMenuItems();
   const shownItems = items.slice(0, visibleMenuItems);
@@ -782,6 +861,16 @@ foodLoadMore.addEventListener("click", () => {
   renderFoods();
 });
 
+practiceForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  checkPracticeAnswer();
+});
+
+practiceNext.addEventListener("click", () => {
+  renderPracticeItem();
+  practiceAnswer.focus();
+});
+
 [orderDish, spiceLevel, orderRequest].forEach((control) => {
   control.addEventListener("change", updatePhrase);
 });
@@ -801,6 +890,7 @@ renderLetters();
 renderToneGuide();
 renderMarks();
 renderFoods();
+renderPracticeItem();
 renderOrderOptions();
 updatePhrase();
 updateProgress();

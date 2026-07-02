@@ -824,6 +824,129 @@ select {
   background: rgba(199, 217, 59, 0.28);
 }
 
+.practice-session {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.practice-session strong {
+  color: var(--ink);
+}
+
+.practice-layout {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.9fr) minmax(340px, 1.1fr);
+  min-height: 470px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.practice-photo {
+  min-height: 470px;
+  margin: 0;
+  background: #eef1eb;
+}
+
+.practice-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 470px;
+  object-fit: cover;
+}
+
+.practice-task {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+  padding: 34px;
+}
+
+.practice-thai {
+  font-family: "IBM Plex Sans Thai", Tahoma, sans-serif;
+  font-size: 46px;
+  font-weight: 500;
+  line-height: 1.15;
+}
+
+.practice-ru {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.4;
+}
+
+.practice-form {
+  margin-top: 30px;
+}
+
+.practice-form label {
+  display: block;
+  margin-bottom: 7px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.practice-input-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px;
+}
+
+.practice-input-row input {
+  min-width: 0;
+  min-height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0 12px;
+  color: var(--ink);
+  background: #fff;
+}
+
+.practice-input-row .primary-button,
+.practice-next {
+  min-height: 44px;
+}
+
+.practice-result {
+  margin-top: 18px;
+  border-left: 3px solid var(--broth);
+  padding: 2px 0 2px 12px;
+}
+
+.practice-result strong {
+  font-size: 24px;
+}
+
+.practice-result strong[data-level="perfect"] {
+  color: var(--leaf);
+}
+
+.practice-result strong[data-level="retry"] {
+  color: var(--chili);
+}
+
+.practice-result p {
+  margin-top: 5px;
+  color: var(--muted);
+}
+
+.practice-result span {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.practice-next {
+  width: max-content;
+  margin-top: 20px;
+}
+
 .order-layout {
   display: grid;
   grid-template-columns: 320px minmax(0, 1fr);
@@ -939,6 +1062,7 @@ select {
   .workspace,
   .hero-strip,
   .tone-guide,
+  .practice-layout,
   .order-layout {
     grid-template-columns: 1fr;
   }
@@ -956,6 +1080,11 @@ select {
   .mark-grid,
   .food-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .practice-photo,
+  .practice-photo img {
+    min-height: 320px;
   }
 
   .tone-guide-grid {
@@ -1012,6 +1141,18 @@ select {
 
   .letter-card {
     grid-template-columns: 62px 1fr;
+  }
+
+  .practice-input-row {
+    grid-template-columns: 1fr;
+  }
+
+  .practice-task {
+    padding: 22px;
+  }
+
+  .practice-thai {
+    font-size: 38px;
   }
 
   .letter-glyph {

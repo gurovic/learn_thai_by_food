@@ -22,6 +22,7 @@
             <button class="tab is-active" data-view="letters" type="button">Буквы</button>
             <button class="tab" data-view="marks" type="button">Знаки</button>
             <button class="tab" data-view="foods" type="button">Меню</button>
+            <button class="tab" data-view="practice" type="button">Упражнения</button>
             <button class="tab" data-view="order" type="button">Заказ</button>
           </nav>
 
@@ -94,6 +95,42 @@
             <button id="foodLoadMore" class="load-more" type="button">Показать ещё</button>
           </section>
 
+          <section id="practice" class="view">
+            <div class="section-head">
+              <div>
+                <h3>Напиши транскрипцию</h3>
+                <p>Посмотри на тайское название и запиши его латинскими буквами.</p>
+              </div>
+              <div class="practice-session" aria-live="polite">
+                <span>Попыток <strong id="practiceAttempts">0</strong></span>
+                <span>Средняя точность <strong id="practiceAverage">0%</strong></span>
+              </div>
+            </div>
+            <div class="practice-layout">
+              <figure class="practice-photo">
+                <img id="practiceImage" src="" alt="" width="720" height="520">
+              </figure>
+              <div class="practice-task">
+                <div>
+                  <p id="practiceThai" class="practice-thai"></p>
+                  <p id="practiceRu" class="practice-ru"></p>
+                </div>
+                <form id="practiceForm" class="practice-form">
+                  <label for="practiceAnswer">Транскрипция латиницей</label>
+                  <div class="practice-input-row">
+                    <input id="practiceAnswer" type="text" inputmode="text" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="Например: khao man kai">
+                    <button class="primary-button" type="submit">Проверить</button>
+                  </div>
+                </form>
+                <div id="practiceResult" class="practice-result" aria-live="polite" hidden>
+                  <strong id="practiceScore"></strong>
+                  <p>Правильный ответ: <span id="practiceExpected"></span></p>
+                </div>
+                <button id="practiceNext" class="ghost-button practice-next" type="button">Следующее блюдо</button>
+              </div>
+            </div>
+          </section>
+
           <section id="order" class="view">
             <div class="section-head">
               <div>
@@ -158,6 +195,6 @@
 
     <script src="verified-menu-data.js?v=20260702-4"></script>
     <script src="menu-data.js?v=20260701-4"></script>
-    <script src="app.js?v=20260702-3"></script>
+    <script src="app.js?v=20260702-4"></script>
   </body>
 </html>
