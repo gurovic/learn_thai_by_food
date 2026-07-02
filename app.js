@@ -499,15 +499,13 @@ function renderFoods() {
   const shownItems = items.slice(0, visibleMenuItems);
   foodGrid.innerHTML = shownItems.map((food) => {
     const photo = getMenuPhoto(food);
-    const photoCredit = photo
-      ? [photo.author, photo.license].filter(Boolean).join(" · ") || "Wikimedia Commons"
-      : "";
     return `
     <article class="food-card ${photo ? "has-photo" : ""}">
       ${photo ? `
         <figure class="food-photo">
-          <img src="${escapeMarkup(photo.url)}" alt="${escapeMarkup(food.ru)}" loading="lazy" decoding="async" width="720" height="420">
-          <figcaption><a href="${escapeMarkup(photo.page)}" target="_blank" rel="noopener noreferrer" title="${escapeMarkup(photo.title)}">${escapeMarkup(photoCredit)}</a></figcaption>
+          <a href="${escapeMarkup(photo.page)}" target="_blank" rel="noopener noreferrer" title="Источник фотографии: ${escapeMarkup(photo.title)}">
+            <img src="${escapeMarkup(photo.url)}" alt="${escapeMarkup(food.ru)}" loading="lazy" decoding="async" width="720" height="420">
+          </a>
         </figure>
       ` : ""}
       <div class="speak-line">
