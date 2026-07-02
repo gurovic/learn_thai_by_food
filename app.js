@@ -710,7 +710,7 @@ function renderFoods() {
         <p class="thai-name">${food.thai}</p>
         <button class="speak-button" data-speak="${food.thai}" data-label="${food.thai}" type="button" aria-label="Произнести ${food.thai}">🔊</button>
       </div>
-      ${food.category === "ingredient" ? `<p class="ingredient-translit">${escapeMarkup(food.translit)}</p>` : ""}
+      ${["ingredient", "method"].includes(food.category) ? `<p class="menu-item-translit">${escapeMarkup(food.translit)}</p>` : ""}
       <h4>${food.ru}</h4>
       ${food.words?.length ? `
         <div class="food-breakdown" aria-label="Перевод слов в названии">

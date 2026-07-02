@@ -767,14 +767,14 @@ select {
   font-weight: 900;
 }
 
-.ingredient-translit {
+.menu-item-translit {
   margin-top: 3px;
   color: var(--leaf);
   font-size: 14px;
   line-height: 1.3;
 }
 
-.ingredient-translit + h4 {
+.menu-item-translit + h4 {
   margin-top: 4px;
 }
 
