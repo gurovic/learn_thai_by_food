@@ -3,18 +3,18 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Thai Menu Reader</title>
-    <link rel="stylesheet" href="styles.css?v=20260702-3">
+    <title>Читаем по-тайски</title>
+    <link rel="stylesheet" href="styles.css?v=20260702-4">
   </head>
   <body>
     <main class="app-shell">
-      <section class="workspace" aria-label="Thai Menu Reader">
+      <section class="workspace" aria-label="Читаем по-тайски">
         <aside class="sidebar">
           <div class="brand">
             <div class="brand-mark" aria-hidden="true">ก</div>
             <div>
-              <h1>Thai Menu Reader</h1>
-              <p>Тайские буквы через еду, напитки и реальные фразы заказа.</p>
+              <h1>Читаем по-тайски</h1>
+              <p>Буквы, слова и живые фразы.</p>
             </div>
           </div>
 
@@ -38,19 +38,6 @@
         </aside>
 
         <section class="content">
-          <section class="hero-strip">
-            <div>
-              <span class="eyebrow">тайский через меню</span>
-              <h2>Буквы, знаки и блюда для чтения меню</h2>
-              <p class="hero-copy">Короткие карточки помогают узнавать тайские слова в кафе, на рынках и в доставке.</p>
-            </div>
-            <div class="dish-board" aria-label="Мини-галерея блюд">
-              <div class="dish-tile soup"><span class="dish-hero-icon">🍜</span><span>ก๋วยเตี๋ยว</span><small>лапша</small></div>
-              <div class="dish-tile rice"><span class="dish-hero-icon">🍚</span><span>ข้าวผัด</span><small>рис</small></div>
-              <div class="dish-tile tea"><span class="dish-hero-icon">🧋</span><span>ชาเย็น</span><small>чай</small></div>
-            </div>
-          </section>
-
           <section id="letters" class="view is-active">
             <div class="section-head">
               <div>
@@ -137,6 +124,14 @@
                     <option value="กินที่นี่">здесь</option>
                     <option value="ไม่ใส่น้ำตาล">без сахара</option>
                     <option value="ไม่ใส่ผงชูรส">без глутамата</option>
+                    <option value="ไม่เอาน้ำแข็ง">без льда</option>
+                    <option value="หวานน้อย">менее сладко</option>
+                    <option value="ไม่ใส่ผักชี">без кинзы</option>
+                    <option value="ไม่ใส่ถั่วลิสง">без арахиса</option>
+                    <option value="เพิ่มข้าว">добавить рис</option>
+                    <option value="แยกน้ำ">соус отдельно</option>
+                    <option value="ใส่กล่อง">положить в контейнер</option>
+                    <option value="ขอช้อนด้วย">и ложку, пожалуйста</option>
                   </select>
                 </label>
               </div>
@@ -144,7 +139,6 @@
                 <span class="eyebrow">фраза для заказа</span>
                 <p id="thaiPhrase" class="thai-phrase"></p>
                 <div id="phraseBreakdown" class="phrase-breakdown" aria-label="Перевод слов во фразе"></div>
-                <p id="phraseTranslit" class="translit"></p>
                 <p id="phraseRu" class="phrase-ru"></p>
                 <div class="phrase-actions">
                   <button id="speakPhrase" class="speak-phrase-button" type="button" aria-label="Произнести фразу заказа">🔊</button>
@@ -162,8 +156,8 @@
       </footer>
     </main>
 
-    <script src="verified-menu-data.js?v=20260702-3"></script>
+    <script src="verified-menu-data.js?v=20260702-4"></script>
     <script src="menu-data.js?v=20260701-4"></script>
-    <script src="app.js?v=20260702-2"></script>
+    <script src="app.js?v=20260702-3"></script>
   </body>
 </html>

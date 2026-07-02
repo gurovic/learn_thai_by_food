@@ -5,6 +5,7 @@ import { fileURLToPath } from "node:url";
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(scriptDir, "..");
 const cachePath = path.join(scriptDir, "verified-menu-translations.json");
+const photoCachePath = path.join(scriptDir, "verified-drink-photos.json");
 const sourceUrl = "https://en.wikipedia.org/w/api.php?action=parse&page=List_of_Thai_dishes&prop=text&formatversion=2&format=json&origin=*";
 const sectionNames = {
   Individual_dishes: "Отдельные блюда",
@@ -170,6 +171,125 @@ const supplementalDrinks = [
     }
   }
 ];
+
+const additionalDrinks = [
+  ["น้ำเปล่า", "nam plao", "Питьевая вода", "commons:glass-water"],
+  ["น้ำแร่", "nam rae", "Минеральная вода", "mineral water bottle glass"],
+  ["น้ำโซดา", "nam soda", "Газированная содовая вода", "carbonated water beverage glass"],
+  ["น้ำอัดลม", "nam at lom", "Сладкая газировка", "soft drink glass ice"],
+  ["กาแฟร้อน", "kafae ron", "Горячий черный кофе", "black coffee cup"],
+  ["กาแฟเย็น", "kafae yen", "Тайский кофе со сгущенным молоком и льдом", "Thai iced coffee"],
+  ["เอสเปรสโซ", "espresso", "Эспрессо", "espresso cup"],
+  ["อเมริกาโน", "americano", "Американо", "caffe americano"],
+  ["ลาเต้", "latte", "Кофе с молоком", "cafe latte glass"],
+  ["คาปูชิโน", "cappuccino", "Капучино с молочной пеной", "cappuccino cup"],
+  ["มอคค่า", "mocha", "Кофе с молоком и шоколадом", "caffe mocha glass"],
+  ["ชาเขียว", "cha khiao", "Зеленый чай", "green tea cup"],
+  ["ชาดำเย็น", "cha dam yen", "Холодный черный чай с сахаром", "iced black tea glass"],
+  ["ชาร้อน", "cha ron", "Горячий черный чай", "black tea cup"],
+  ["ชาอู่หลง", "cha ulong", "Чай улун", "oolong tea cup"],
+  ["ชาขิง", "cha khing", "Горячий имбирный чай", "ginger tea cup"],
+  ["น้ำกระเจี๊ยบ", "nam krachiap", "Холодный настой гибискуса", "hibiscus tea beverage"],
+  ["น้ำตะไคร้", "nam takhrai", "Холодный настой лемонграсса", "lemongrass drink glass"],
+  ["น้ำอัญชัน", "nam anchan", "Синий чай из цветков клитории", "butterfly pea flower tea beverage"],
+  ["น้ำมะตูม", "nam matum", "Настой плодов баэль", "bael fruit drink"],
+  ["น้ำใบเตย", "nam bai toei", "Сладкий напиток из листьев пандана", "pandan drink glass"],
+  ["น้ำจับเลี้ยง", "nam chap liang", "Охлажденный китайский травяной настой", "Chinese herbal tea beverage"],
+  ["น้ำส้ม", "nam som", "Апельсиновый сок", "orange juice glass"],
+  ["น้ำมะนาว", "nam manao", "Лаймовый напиток со льдом", "limeade beverage"],
+  ["น้ำแตงโม", "nam taengmo", "Арбузный сок", "watermelon juice glass"],
+  ["น้ำสับปะรด", "nam sapparot", "Ананасовый сок", "pineapple juice glass"],
+  ["น้ำมะม่วง", "nam mamuang", "Манговый сок", "mango juice glass"],
+  ["น้ำฝรั่ง", "nam farang", "Сок гуавы", "guava juice beverage"],
+  ["น้ำลิ้นจี่", "nam linchi", "Сок личи", "lychee juice glass"],
+  ["น้ำเสาวรส", "nam saowarot", "Сок маракуйи", "passion fruit juice glass"],
+  ["น้ำทับทิม", "nam thapthim", "Гранатовый сок", "pomegranate juice glass"],
+  ["น้ำอ้อย", "nam oi", "Свежий сок сахарного тростника", "sugarcane juice glass"],
+  ["น้ำลำไย", "nam lamyai", "Сладкий напиток из сушеного лонгана", "commons:longan-juice"],
+  ["แตงโมปั่น", "taengmo pan", "Арбузный смузи со льдом", "watermelon smoothie"],
+  ["มะม่วงปั่น", "mamuang pan", "Манговый смузи со льдом", "intitle:mango smoothie -bowl"],
+  ["กล้วยปั่น", "kluai pan", "Банановый смузи", "banana smoothie beverage"],
+  ["นมสด", "nom sot", "Свежее молоко", "drinking milk in glass"],
+  ["นมถั่วเหลือง", "nom thua lueang", "Соевое молоко", "soy milk glass"],
+  ["โยเกิร์ตดื่ม", "yokoet duem", "Питьевой йогурт", "yogurt beverage bottle"]
+].map(([thai, translit, ru, photoQuery]) => ({ thai, translit, ru, photoQuery }));
+
+let photoSearchCache = {};
+try {
+  photoSearchCache = JSON.parse(await readFile(photoCachePath, "utf8"));
+} catch {}
+
+const knownCommonsPhotos = {
+  "commons:glass-water": {
+    url: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Glass_of_water_(31372847376).jpg?width=500",
+    page: "https://commons.wikimedia.org/wiki/File:Glass_of_water_(31372847376).jpg",
+    title: "Glass of water (31372847376).jpg",
+    author: "Wikimedia Commons",
+    license: "источник"
+  },
+  "commons:longan-juice": {
+    url: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Longan_Free_use.jpg?width=500",
+    page: "https://commons.wikimedia.org/wiki/File:Longan_Free_use.jpg",
+    title: "Longan Free use.jpg",
+    author: "Wikimedia Commons",
+    license: "источник"
+  }
+};
+
+async function commonsPhoto(search) {
+  if (knownCommonsPhotos[search]) return knownCommonsPhotos[search];
+  if (photoSearchCache[search]) return photoSearchCache[search];
+  const searches = [search, search.replace(/\b(glass|cup|bottle|drink)\b/gi, "").replace(/\s+/g, " ").trim()];
+  for (const candidate of new Set(searches)) {
+    const params = new URLSearchParams({
+      action: "query",
+      generator: "search",
+      gsrsearch: candidate,
+      gsrnamespace: "6",
+      gsrlimit: "1",
+      prop: "imageinfo",
+      iiprop: "url",
+      iiurlwidth: "500",
+      format: "json",
+      origin: "*"
+    });
+    let payload;
+    for (let attempt = 1; attempt <= 7; attempt += 1) {
+      const response = await fetch(`https://commons.wikimedia.org/w/api.php?${params}`, {
+        headers: { "User-Agent": "ThaiMenuReader/1.0 (educational project; contact: gurovic.github.io)" },
+        signal: AbortSignal.timeout(30000)
+      });
+      if (response.ok) {
+        payload = await response.json();
+        break;
+      }
+      if (response.status !== 429 || attempt === 7) throw new Error(`Commons HTTP ${response.status}`);
+      await new Promise((resolve) => setTimeout(resolve, attempt * 2500));
+    }
+    const page = Object.values(payload.query?.pages || {})[0];
+    const image = page?.imageinfo?.[0];
+    if (!page || !image) continue;
+    const photo = {
+      url: image.thumburl || image.url,
+      page: image.descriptionurl,
+      title: page.title.replace(/^File:/, ""),
+      author: "Wikimedia Commons",
+      license: "источник"
+    };
+    photoSearchCache[search] = photo;
+    await writeFile(photoCachePath, JSON.stringify(photoSearchCache, null, 2), "utf8");
+    return photo;
+  }
+  throw new Error(`No Commons photo for ${search}`);
+}
+
+for (const drink of additionalDrinks) {
+  if (seenThai.has(drink.thai)) continue;
+  drink.photo = await commonsPhoto(drink.photoQuery);
+  delete drink.photoQuery;
+  supplementalDrinks.push(drink);
+  await new Promise((resolve) => setTimeout(resolve, 900));
+}
 
 const russianOverrides = {
   "ข้าวกั๊นจิ๊น": "рис со свиной кровью на пару в банановом листе",

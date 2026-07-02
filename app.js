@@ -231,6 +231,42 @@ const requestBreakdowns = {
     { thai: "ไม่", translit: "mai", ru: "не" },
     { thai: "ใส่", translit: "sai", ru: "класть, добавлять" },
     { thai: "ผงชูรส", translit: "phong chu rot", ru: "глутамат" }
+  ],
+  "ไม่เอาน้ำแข็ง": [
+    { thai: "ไม่", translit: "mai", ru: "не" },
+    { thai: "เอา", translit: "ao", ru: "брать, нужно" },
+    { thai: "น้ำแข็ง", translit: "nam khaeng", ru: "лёд" }
+  ],
+  "หวานน้อย": [
+    { thai: "หวาน", translit: "wan", ru: "сладкий" },
+    { thai: "น้อย", translit: "noi", ru: "немного" }
+  ],
+  "ไม่ใส่ผักชี": [
+    { thai: "ไม่", translit: "mai", ru: "не" },
+    { thai: "ใส่", translit: "sai", ru: "добавлять" },
+    { thai: "ผักชี", translit: "phak chi", ru: "кинза" }
+  ],
+  "ไม่ใส่ถั่วลิสง": [
+    { thai: "ไม่", translit: "mai", ru: "не" },
+    { thai: "ใส่", translit: "sai", ru: "добавлять" },
+    { thai: "ถั่วลิสง", translit: "thua lisong", ru: "арахис" }
+  ],
+  "เพิ่มข้าว": [
+    { thai: "เพิ่ม", translit: "phoem", ru: "добавить" },
+    { thai: "ข้าว", translit: "khao", ru: "рис" }
+  ],
+  "แยกน้ำ": [
+    { thai: "แยก", translit: "yaek", ru: "отдельно" },
+    { thai: "น้ำ", translit: "nam", ru: "соус, жидкость" }
+  ],
+  "ใส่กล่อง": [
+    { thai: "ใส่", translit: "sai", ru: "положить" },
+    { thai: "กล่อง", translit: "klong", ru: "контейнер" }
+  ],
+  "ขอช้อนด้วย": [
+    { thai: "ขอ", translit: "kho", ru: "попросить" },
+    { thai: "ช้อน", translit: "chon", ru: "ложка" },
+    { thai: "ด้วย", translit: "duai", ru: "тоже, пожалуйста" }
   ]
 };
 
@@ -314,7 +350,6 @@ const spiceLevel = document.querySelector("#spiceLevel");
 const orderRequest = document.querySelector("#orderRequest");
 const thaiPhrase = document.querySelector("#thaiPhrase");
 const phraseBreakdown = document.querySelector("#phraseBreakdown");
-const phraseTranslit = document.querySelector("#phraseTranslit");
 const phraseRu = document.querySelector("#phraseRu");
 const markPhrase = document.querySelector("#markPhrase");
 const speechStatus = document.querySelector("#speechStatus");
@@ -458,7 +493,14 @@ function renderLetters() {
     const transliterations = exampleTransliterations[letter.glyph] || [letter.translit];
     return `
       <article class="letter-card">
-        <div class="letter-glyph" aria-hidden="true">${letter.glyph}</div>
+        <div>
+          <div class="letter-glyph" aria-hidden="true">${letter.glyph}</div>
+          <div class="letter-forms" aria-label="Варианты написания буквы ${letter.glyph}">
+            <span class="letter-form is-print" title="Печатное начертание">${letter.glyph}</span>
+            <span class="letter-form is-loopless" title="Современное начертание без петель">${letter.glyph}</span>
+            <span class="letter-form is-handwritten" title="Рукописное начертание">${letter.glyph}</span>
+          </div>
+        </div>
         <div>
           <p class="meta">${letter.sound}</p>
           <div class="dish-examples" aria-label="Примеры для буквы ${letter.glyph}">
@@ -489,8 +531,47 @@ function getFilteredMenuItems() {
   return menuItems.filter((food) => {
     if (category !== "all" && food.category !== category) return false;
     if (!query) return true;
-    const text = `${food.thai} ${food.translit} ${food.ru} ${food.tags.join(" ")}`.toLowerCase();
+    const text = `${food.thai} ${food.translit} ${food.ru} ${(food.tags || []).join(" ")}`.toLowerCase();
     return text.includes(query);
+  });
+}
+
+function getMenuWordBlocks(food) {
+  const words = food.words || [];
+  const syllables = food.translit.trim().split(/\s+/).filter(Boolean);
+  if (!words.length || !syllables.length) return [];
+  if (words.length === 1) return [{ ...words[0], translit: syllables.join(" ") }];
+
+  if (syllables.length >= words.length) {
+    let syllableIndex = 0;
+    return words.map((word, wordIndex) => {
+      const wordsLeft = words.length - wordIndex;
+      const syllablesLeft = syllables.length - syllableIndex;
+      const thaiLeft = words.slice(wordIndex).reduce((sum, item) => sum + item.thai.length, 0);
+      const proportional = Math.round(syllablesLeft * word.thai.length / thaiLeft);
+      const take = wordIndex === words.length - 1
+        ? syllablesLeft
+        : Math.max(1, Math.min(syllablesLeft - wordsLeft + 1, proportional));
+      const translit = syllables.slice(syllableIndex, syllableIndex + take).join(" ");
+      syllableIndex += take;
+      return { ...word, translit };
+    });
+  }
+
+  let wordIndex = 0;
+  return syllables.map((translit, syllableIndex) => {
+    const syllablesLeft = syllables.length - syllableIndex;
+    const wordsLeft = words.length - wordIndex;
+    const take = syllableIndex === syllables.length - 1
+      ? wordsLeft
+      : Math.max(1, Math.floor(wordsLeft / syllablesLeft));
+    const group = words.slice(wordIndex, wordIndex + take);
+    wordIndex += take;
+    return {
+      thai: group.map((word) => word.thai).join(""),
+      translit,
+      ru: group.map((word) => word.ru).join(" + ")
+    };
   });
 }
 
@@ -515,19 +596,15 @@ function renderFoods() {
       <h4>${food.ru}</h4>
       ${food.words?.length ? `
         <div class="food-breakdown" aria-label="Перевод слов в названии">
-          ${food.words.map((word) => `
+          ${getMenuWordBlocks(food).map((word) => `
             <span class="food-word">
               <strong>${escapeMarkup(word.thai)}</strong>
+              <em>${escapeMarkup(word.translit)}</em>
               <small>${escapeMarkup(word.ru)}</small>
             </span>
           `).join("")}
         </div>
       ` : ""}
-      <p class="meta">${food.translit}</p>
-      <span class="menu-category menu-category-${food.category || "dish"}">${menuCategoryLabels[food.category] || "Блюдо"}</span>
-      <div class="tag-row">
-        ${food.tags.map((tag) => `<span class="tag">${tag}</span>`).join("")}
-      </div>
     </article>
   `;
   }).join("");
@@ -604,7 +681,6 @@ function updatePhrase() {
       <small>${part.ru}</small>
     </div>
   `).join("");
-  phraseTranslit.textContent = `kho ${selected.dataset.translit} · ${spiceLevel.selectedOptions[0].textContent} · ${orderRequest.selectedOptions[0].textContent}`;
   phraseRu.textContent = `Пожалуйста: ${selected.dataset.ru}, ${spiceLevel.selectedOptions[0].textContent}, ${orderRequest.selectedOptions[0].textContent}.`;
   markPhrase.classList.toggle("is-known", state.phraseKnown);
   markPhrase.textContent = state.phraseKnown ? "Фраза в копилке" : "Я могу это прочитать";

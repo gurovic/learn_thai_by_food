@@ -25,7 +25,7 @@ async function fileIsReady(filePath) {
 async function download(entry) {
   const filename = path.basename(entry.photo.url);
   const filePath = path.join(imageDir, filename);
-  if (await fileIsReady(filePath)) return;
+  if (await fileIsReady(filePath)) return false;
   const tempPath = `${filePath}.part`;
   const originalUrl = entry.photo.remoteUrl.replace("/thumb/", "/").replace(/\/[^/]+$/, "");
 
@@ -42,7 +42,7 @@ async function download(entry) {
       await writeFile(tempPath, bytes);
       await rename(tempPath, filePath);
       downloaded += 1;
-      return;
+      return true;
     } catch (error) {
       try { await unlink(tempPath); } catch {}
       if (attempt === 8) throw error;
@@ -55,19 +55,21 @@ async function worker() {
   while (cursor < entries.length) {
     const entry = entries[cursor];
     cursor += 1;
+    let requested = false;
     try {
-      await download(entry);
+      requested = await download(entry);
     } catch (error) {
       failures.push(`${entry.thai}: ${error.message}`);
+      requested = true;
     }
     if (cursor % 25 === 0 || cursor === entries.length) {
       console.log(`${cursor}/${entries.length}, downloaded ${downloaded}, failed ${failures.length}`);
     }
-    await new Promise((resolve) => setTimeout(resolve, 250));
+    if (requested) await new Promise((resolve) => setTimeout(resolve, 1200));
   }
 }
 
-await Promise.all(Array.from({ length: 2 }, () => worker()));
+await worker();
 
 if (failures.length) {
   console.error(failures.join("\n"));

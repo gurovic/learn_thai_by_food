@@ -9438,5 +9438,1133 @@ window.verifiedMenuItems = [
         "ru": "кокос"
       }
     ]
+  },
+  {
+    "thai": "น้ำเปล่า",
+    "translit": "nam plao",
+    "ru": "Питьевая вода",
+    "photo": {
+      "url": "images/menu/302.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Glass_of_water_(31372847376).jpg",
+      "title": "Glass of water (31372847376).jpg",
+      "author": "Wikimedia Commons",
+      "license": "источник",
+      "remoteUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Glass_of_water_(31372847376).jpg?width=500"
+    },
+    "category": "drink",
+    "tags": [
+      "Напитки",
+      "напиток"
+    ],
+    "words": [
+      {
+        "thai": "น้ำ",
+        "ru": "вода"
+      },
+      {
+        "thai": "เปล่า",
+        "ru": "ничего"
+      }
+    ]
+  },
+  {
+    "thai": "น้ำแร่",
+    "translit": "nam rae",
+    "ru": "Минеральная вода",
+    "photo": {
+      "url": "images/menu/303.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Acqua_Panna_mineral_water_in_a_glass_bottle_-_20140408.jpg",
+      "title": "Acqua Panna mineral water in a glass bottle - 20140408.jpg",
+      "author": "Wikimedia Commons",
+      "license": "источник",
+      "remoteUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Acqua_Panna_mineral_water_in_a_glass_bottle_-_20140408.jpg/500px-Acqua_Panna_mineral_water_in_a_glass_bottle_-_20140408.jpg"
+    },
+    "category": "drink",
+    "tags": [
+      "Напитки",
+      "напиток"
+    ],
+    "words": [
+      {
+        "thai": "น้ำแร่",
+        "ru": "минеральная вода"
+      }
+    ]
+  },
+  {
+    "thai": "น้ำโซดา",
+    "translit": "nam soda",
+    "ru": "Газированная содовая вода",
+    "photo": {
+      "url": "images/menu/304.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Hop_Water_in_a_Glass.jpg",
+      "title": "Hop Water in a Glass.jpg",
+      "author": "Wikimedia Commons",
+      "license": "источник",
+      "remoteUrl": "https://upload.wikimedia.org/wikipedia/commons/7/75/Hop_Water_in_a_Glass.jpg"
+    },
+    "category": "drink",
+    "tags": [
+      "Напитки",
+      "напиток"
+    ],
+    "words": [
+      {
+        "thai": "น้ำ",
+        "ru": "вода"
+      },
+      {
+        "thai": "โซดา",
+        "ru": "сода"
+      }
+    ]
+  },
+  {
+    "thai": "น้ำอัดลม",
+    "translit": "nam at lom",
+    "ru": "Сладкая газировка",
+    "photo": {
+      "url": "images/menu/305.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Glass_of_Cola.jpg",
+      "title": "Glass of Cola.jpg",
+      "author": "Wikimedia Commons",
+      "license": "источник",
+      "remoteUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Glass_of_Cola.jpg/500px-Glass_of_Cola.jpg"
+    },
+    "category": "drink",
+    "tags": [
+      "Напитки",
+      "напиток"
+    ],
+    "words": [
+      {
+        "thai": "น้ำ",
+        "ru": "вода"
+      },
+      {
+        "thai": "อัดลม",
+        "ru": "газированный"
+      }
+    ]
+  },
+  {
+    "thai": "กาแฟร้อน",
+    "translit": "kafae ron",
+    "ru": "Горячий черный кофе",
+    "photo": {
+      "url": "images/menu/306.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:A_small_cup_of_coffee.JPG",
+      "title": "A small cup of coffee.JPG",
+      "author": "Wikimedia Commons",
+      "license": "источник",
+      "remoteUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/A_small_cup_of_coffee.JPG/500px-A_small_cup_of_coffee.JPG"
+    },
+    "category": "drink",
+    "tags": [
+      "Напитки",
+      "напиток"
+    ],
+    "words": [
+      {
+        "thai": "กาแฟ",
+        "ru": "кофе"
+      },
+      {
+        "thai": "ร้อน",
+        "ru": "горячий"
+      }
+    ]
+  },
+  {
+    "thai": "กาแฟเย็น",
+    "translit": "kafae yen",
+    "ru": "Тайский кофе со сгущенным молоком и льдом",
+    "photo": {
+      "url": "images/menu/307.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Oliang_%E0%B9%82%E0%B8%AD%E0%B9%80%E0%B8%A5%E0%B8%B5%E0%B9%89%E0%B8%A2%E0%B8%87_oleang_olieng_Thai_iced_coffee_at_Ayutthaya.jpg",
+      "title": "Oliang โอเลี้ยง oleang olieng Thai iced coffee at Ayutthaya.jpg",
+      "author": "Wikimedia Commons",
+      "license": "источник",
+      "remoteUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Oliang_%E0%B9%82%E0%B8%AD%E0%B9%80%E0%B8%A5%E0%B8%B5%E0%B9%89%E0%B8%A2%E0%B8%87_oleang_olieng_Thai_iced_coffee_at_Ayutthaya.jpg/500px-Oliang_%E0%B9%82%E0%B8%AD%E0%B9%80%E0%B8%A5%E0%B8%B5%E0%B9%89%E0%B8%A2%E0%B8%87_oleang_olieng_Thai_iced_coffee_at_Ayutthaya.jpg"
+    },
+    "category": "drink",
+    "tags": [
+      "Напитки",
+      "напиток"
+    ],
+    "words": [
+      {
+        "thai": "กาแฟ",
+        "ru": "кофе"
+      },
+      {
+        "thai": "เย็น",
+        "ru": "прохладный"
+      }
+    ]
+  },
+  {
+    "thai": "เอสเปรสโซ",
+    "translit": "espresso",
+    "ru": "Эспрессо",
+    "photo": {
+      "url": "images/menu/308.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Gray_espresso_cup_with_amaretto.jpg",
+      "title": "Gray espresso cup with amaretto.jpg",
+      "author": "Wikimedia Commons",
+      "license": "источник",
+      "remoteUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Gray_espresso_cup_with_amaretto.jpg/500px-Gray_espresso_cup_with_amaretto.jpg"
+    },
+    "category": "drink",
+    "tags": [
+      "Напитки",
+      "напиток"
+    ],
+    "words": [
+      {
+        "thai": "เอ",
+        "ru": "А"
+      },
+      {
+        "thai": "ส",
+        "ru": "С"
+      },
+      {
+        "thai": "เปร",
+        "ru": "Предварительно"
+      },
+      {
+        "thai": "ส",
+        "ru": "С"
+      },
+      {
+        "thai": "โซ",
+        "ru": "Так"
+      }
+    ]
+  },
+  {
+    "thai": "อเมริกาโน",
+    "translit": "americano",
+    "ru": "Американо",
+    "photo": {
+      "url": "images/menu/309.jpeg",
+      "page": "https://commons.wikimedia.org/wiki/File:Espresso_Americano.jpeg",
+      "title": "Espresso Americano.jpeg",
+      "author": "Wikimedia Commons",
+      "license": "источник",
+      "remoteUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Espresso_Americano.jpeg/500px-Espresso_Americano.jpeg"
+    },
+    "category": "drink",
+    "tags": [
+      "Напитки",
+      "напиток"
+    ],
+    "words": [
+      {
+        "thai": "อเมริกา",
+        "ru": "Америка"
+      },
+      {
+        "thai": "โน",
+        "ru": "Нет"
+      }
+    ]
+  },
+  {
+    "thai": "ลาเต้",
+    "translit": "latte",
+    "ru": "Кофе с молоком",
+    "photo": {
+      "url": "images/menu/310.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Caffe_Latte_at_Pulse_Cafe.jpg",
+      "title": "Caffe Latte at Pulse Cafe.jpg",
+      "author": "Wikimedia Commons",
+      "license": "источник",
+      "remoteUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Caffe_Latte_at_Pulse_Cafe.jpg/500px-Caffe_Latte_at_Pulse_Cafe.jpg"
+    },
+    "category": "drink",
+    "tags": [
+      "Напитки",
+      "напиток"
+    ],
+    "words": [
+      {
+        "thai": "ลา",
+        "ru": "осел"
+      },
+      {
+        "thai": "เต้",
+        "ru": "Тэ"
+      }
+    ]
+  },
+  {
+    "thai": "คาปูชิโน",
+    "translit": "cappuccino",
+    "ru": "Капучино с молочной пеной",
+    "photo": {
+      "url": "images/menu/311.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Cappuccino-cup_20230110_103258.jpg",
+      "title": "Cappuccino-cup 20230110 103258.jpg",
+      "author": "Wikimedia Commons",
+      "license": "источник",
+      "remoteUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Cappuccino-cup_20230110_103258.jpg/500px-Cappuccino-cup_20230110_103258.jpg"
+    },
+    "category": "drink",
+    "tags": [
+      "Напитки",
+      "напиток"
+    ],
+    "words": [
+      {
+        "thai": "คา",
+        "ru": "цена"
+      },
+      {
+        "thai": "ปู",
+        "ru": "краб"
+      },
+      {
+        "thai": "ชิ",
+        "ru": "Ши"
+      },
+      {
+        "thai": "โน",
+        "ru": "Нет"
+      }
+    ]
+  },
+  {
+    "thai": "มอคค่า",
+    "translit": "mocha",
+    "ru": "Кофе с молоком и шоколадом",
+    "photo": {
+      "url": "images/menu/312.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Caff%C3%A8_Mocha_by_Phil.jpg",
+      "title": "Caffè Mocha by Phil.jpg",
+      "author": "Wikimedia Commons",
+      "license": "источник",
+      "remoteUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Caff%C3%A8_Mocha_by_Phil.jpg/500px-Caff%C3%A8_Mocha_by_Phil.jpg"
+    },
+    "category": "drink",
+    "tags": [
+      "Напитки",
+      "напиток"
+    ],
+    "words": [
+      {
+        "thai": "มอ",
+        "ru": "Университет"
+      },
+      {
+        "thai": "ค",
+        "ru": "С"
+      },
+      {
+        "thai": "ค่า",
+        "ru": "платеж"
+      }
+    ]
+  },
+  {
+    "thai": "ชาเขียว",
+    "translit": "cha khiao",
+    "ru": "Зеленый чай",
+    "photo": {
+      "url": "images/menu/313.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Green_Tea_Cup_with_Hollandia_milk.jpg",
+      "title": "Green Tea Cup with Hollandia milk.jpg",
+      "author": "Wikimedia Commons",
+      "license": "источник",
+      "remoteUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Green_Tea_Cup_with_Hollandia_milk.jpg/500px-Green_Tea_Cup_with_Hollandia_milk.jpg"
+    },
+    "category": "drink",
+    "tags": [
+      "Напитки",
+      "напиток"
+    ],
+    "words": [
+      {
+        "thai": "ชา",
+        "ru": "чай"
+      },
+      {
+        "thai": "เขียว",
+        "ru": "зеленый"
+      }
+    ]
+  },
+  {
+    "thai": "ชาดำเย็น",
+    "translit": "cha dam yen",
+    "ru": "Холодный черный чай с сахаром",
+    "photo": {
+      "url": "images/menu/314.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Glass_of_Iced_Tea.jpg",
+      "title": "Glass of Iced Tea.jpg",
+      "author": "Wikimedia Commons",
+      "license": "источник",
+      "remoteUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Glass_of_Iced_Tea.jpg/500px-Glass_of_Iced_Tea.jpg"
+    },
+    "category": "drink",
+    "tags": [
+      "Напитки",
+      "напиток"
+    ],
+    "words": [
+      {
+        "thai": "ชา",
+        "ru": "чай"
+      },
+      {
+        "thai": "ดำ",
+        "ru": "черный"
+      },
+      {
+        "thai": "เย็น",
+        "ru": "прохладный"
+      }
+    ]
+  },
+  {
+    "thai": "ชาร้อน",
+    "translit": "cha ron",
+    "ru": "Горячий черный чай",
+    "photo": {
+      "url": "images/menu/315.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Cup_of_black_tea.JPG",
+      "title": "Cup of black tea.JPG",
+      "author": "Wikimedia Commons",
+      "license": "источник",
+      "remoteUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Cup_of_black_tea.JPG/500px-Cup_of_black_tea.JPG"
+    },
+    "category": "drink",
+    "tags": [
+      "Напитки",
+      "напиток"
+    ],
+    "words": [
+      {
+        "thai": "ชา",
+        "ru": "чай"
+      },
+      {
+        "thai": "ร้อน",
+        "ru": "горячий"
+      }
+    ]
+  },
+  {
+    "thai": "ชาอู่หลง",
+    "translit": "cha ulong",
+    "ru": "Чай улун",
+    "photo": {
+      "url": "images/menu/316.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Dung-ti-oolong-kanne-gross.jpg",
+      "title": "Dung-ti-oolong-kanne-gross.jpg",
+      "author": "Wikimedia Commons",
+      "license": "источник",
+      "remoteUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Dung-ti-oolong-kanne-gross.jpg/500px-Dung-ti-oolong-kanne-gross.jpg"
+    },
+    "category": "drink",
+    "tags": [
+      "Напитки",
+      "напиток"
+    ],
+    "words": [
+      {
+        "thai": "ชา",
+        "ru": "чай"
+      },
+      {
+        "thai": "อู่",
+        "ru": "колыбель"
+      },
+      {
+        "thai": "หลง",
+        "ru": "Потерянный"
+      }
+    ]
+  },
+  {
+    "thai": "ชาขิง",
+    "translit": "cha khing",
+    "ru": "Горячий имбирный чай",
+    "photo": {
+      "url": "images/menu/317.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Black_Ginger_Tea.jpg",
+      "title": "Black Ginger Tea.jpg",
+      "author": "Wikimedia Commons",
+      "license": "источник",
+      "remoteUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Black_Ginger_Tea.jpg/500px-Black_Ginger_Tea.jpg"
+    },
+    "category": "drink",
+    "tags": [
+      "Напитки",
+      "напиток"
+    ],
+    "words": [
+      {
+        "thai": "ชา",
+        "ru": "чай"
+      },
+      {
+        "thai": "ขิง",
+        "ru": "имбирь"
+      }
+    ]
+  },
+  {
+    "thai": "น้ำกระเจี๊ยบ",
+    "translit": "nam krachiap",
+    "ru": "Холодный настой гибискуса",
+    "photo": {
+      "url": "images/menu/318.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Hibiscus_and_berry_iced_tea_-_Lost_in_the_Lanes_2025-07-08.jpg",
+      "title": "Hibiscus and berry iced tea - Lost in the Lanes 2025-07-08.jpg",
+      "author": "Wikimedia Commons",
+      "license": "источник",
+      "remoteUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Hibiscus_and_berry_iced_tea_-_Lost_in_the_Lanes_2025-07-08.jpg/500px-Hibiscus_and_berry_iced_tea_-_Lost_in_the_Lanes_2025-07-08.jpg"
+    },
+    "category": "drink",
+    "tags": [
+      "Напитки",
+      "напиток"
+    ],
+    "words": [
+      {
+        "thai": "น้ำ",
+        "ru": "вода"
+      },
+      {
+        "thai": "กระเจี๊ยบ",
+        "ru": "розель"
+      }
+    ]
+  },
+  {
+    "thai": "น้ำตะไคร้",
+    "translit": "nam takhrai",
+    "ru": "Холодный настой лемонграсса",
+    "photo": {
+      "url": "images/menu/319.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Lemongrass_ginger_tea.jpg",
+      "title": "Lemongrass ginger tea.jpg",
+      "author": "Wikimedia Commons",
+      "license": "источник",
+      "remoteUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Lemongrass_ginger_tea.jpg/500px-Lemongrass_ginger_tea.jpg"
+    },
+    "category": "drink",
+    "tags": [
+      "Напитки",
+      "напиток"
+    ],
+    "words": [
+      {
+        "thai": "น้ำ",
+        "ru": "вода"
+      },
+      {
+        "thai": "ตะไคร้",
+        "ru": "лимонная трава"
+      }
+    ]
+  },
+  {
+    "thai": "น้ำอัญชัน",
+    "translit": "nam anchan",
+    "ru": "Синий чай из цветков клитории",
+    "photo": {
+      "url": "images/menu/320.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Butterfly-pea_flower_tea_2.jpg",
+      "title": "Butterfly-pea flower tea 2.jpg",
+      "author": "Wikimedia Commons",
+      "license": "источник",
+      "remoteUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Butterfly-pea_flower_tea_2.jpg/500px-Butterfly-pea_flower_tea_2.jpg"
+    },
+    "category": "drink",
+    "tags": [
+      "Напитки",
+      "напиток"
+    ],
+    "words": [
+      {
+        "thai": "น้ำ",
+        "ru": "вода"
+      },
+      {
+        "thai": "อัญชัน",
+        "ru": "Бабочка гороховая"
+      }
+    ]
+  },
+  {
+    "thai": "น้ำมะตูม",
+    "translit": "nam matum",
+    "ru": "Настой плодов баэль",
+    "photo": {
+      "url": "images/menu/321.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Bela_pana.jpg",
+      "title": "Bela pana.jpg",
+      "author": "Wikimedia Commons",
+      "license": "источник",
+      "remoteUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Bela_pana.jpg/500px-Bela_pana.jpg"
+    },
+    "category": "drink",
+    "tags": [
+      "Напитки",
+      "напиток"
+    ],
+    "words": [
+      {
+        "thai": "น้ำ",
+        "ru": "вода"
+      },
+      {
+        "thai": "มะตูม",
+        "ru": "Баел фрукты"
+      }
+    ]
+  },
+  {
+    "thai": "น้ำใบเตย",
+    "translit": "nam bai toei",
+    "ru": "Сладкий напиток из листьев пандана",
+    "photo": {
+      "url": "images/menu/322.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Pandan_Juice.jpg",
+      "title": "Pandan Juice.jpg",
+      "author": "Wikimedia Commons",
+      "license": "источник",
+      "remoteUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Pandan_Juice.jpg/500px-Pandan_Juice.jpg"
+    },
+    "category": "drink",
+    "tags": [
+      "Напитки",
+      "напиток"
+    ],
+    "words": [
+      {
+        "thai": "น้ำ",
+        "ru": "вода"
+      },
+      {
+        "thai": "ใบ",
+        "ru": "лист"
+      },
+      {
+        "thai": "เตย",
+        "ru": "винтовая сосна"
+      }
+    ]
+  },
+  {
+    "thai": "น้ำจับเลี้ยง",
+    "translit": "nam chap liang",
+    "ru": "Охлажденный китайский травяной настой",
+    "photo": {
+      "url": "images/menu/323.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:WangLaoJi_Herbal_Tea_250ml.jpg",
+      "title": "WangLaoJi Herbal Tea 250ml.jpg",
+      "author": "Wikimedia Commons",
+      "license": "источник",
+      "remoteUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/WangLaoJi_Herbal_Tea_250ml.jpg/500px-WangLaoJi_Herbal_Tea_250ml.jpg"
+    },
+    "category": "drink",
+    "tags": [
+      "Напитки",
+      "напиток"
+    ],
+    "words": [
+      {
+        "thai": "น้ำ",
+        "ru": "вода"
+      },
+      {
+        "thai": "จับ",
+        "ru": "держать"
+      },
+      {
+        "thai": "เลี้ยง",
+        "ru": "поднимать"
+      }
+    ]
+  },
+  {
+    "thai": "น้ำส้ม",
+    "translit": "nam som",
+    "ru": "Апельсиновый сок",
+    "photo": {
+      "url": "images/menu/324.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Orange_juice_1_edit1.jpg",
+      "title": "Orange juice 1 edit1.jpg",
+      "author": "Wikimedia Commons",
+      "license": "источник",
+      "remoteUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Orange_juice_1_edit1.jpg/500px-Orange_juice_1_edit1.jpg"
+    },
+    "category": "drink",
+    "tags": [
+      "Напитки",
+      "напиток"
+    ],
+    "words": [
+      {
+        "thai": "น้ำส้ม",
+        "ru": "апельсиновый сок"
+      }
+    ]
+  },
+  {
+    "thai": "น้ำมะนาว",
+    "translit": "nam manao",
+    "ru": "Лаймовый напиток со льдом",
+    "photo": {
+      "url": "images/menu/325.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Fresh_limeade.jpg",
+      "title": "Fresh limeade.jpg",
+      "author": "Wikimedia Commons",
+      "license": "источник",
+      "remoteUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Fresh_limeade.jpg/500px-Fresh_limeade.jpg"
+    },
+    "category": "drink",
+    "tags": [
+      "Напитки",
+      "напиток"
+    ],
+    "words": [
+      {
+        "thai": "น้ำ",
+        "ru": "вода"
+      },
+      {
+        "thai": "มะนาว",
+        "ru": "лимон"
+      }
+    ]
+  },
+  {
+    "thai": "น้ำแตงโม",
+    "translit": "nam taengmo",
+    "ru": "Арбузный сок",
+    "photo": {
+      "url": "images/menu/326.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Watermelon_juice_in_glass.jpg",
+      "title": "Watermelon juice in glass.jpg",
+      "author": "Wikimedia Commons",
+      "license": "источник",
+      "remoteUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Watermelon_juice_in_glass.jpg/500px-Watermelon_juice_in_glass.jpg"
+    },
+    "category": "drink",
+    "tags": [
+      "Напитки",
+      "напиток"
+    ],
+    "words": [
+      {
+        "thai": "น้ำ",
+        "ru": "вода"
+      },
+      {
+        "thai": "แตงโม",
+        "ru": "арбуз"
+      }
+    ]
+  },
+  {
+    "thai": "น้ำสับปะรด",
+    "translit": "nam sapparot",
+    "ru": "Ананасовый сок",
+    "photo": {
+      "url": "images/menu/327.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Pineapple_Juice_in_Glass_Jar.jpg",
+      "title": "Pineapple Juice in Glass Jar.jpg",
+      "author": "Wikimedia Commons",
+      "license": "источник",
+      "remoteUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Pineapple_Juice_in_Glass_Jar.jpg/500px-Pineapple_Juice_in_Glass_Jar.jpg"
+    },
+    "category": "drink",
+    "tags": [
+      "Напитки",
+      "напиток"
+    ],
+    "words": [
+      {
+        "thai": "น้ำ",
+        "ru": "вода"
+      },
+      {
+        "thai": "สับปะรด",
+        "ru": "ананас"
+      }
+    ]
+  },
+  {
+    "thai": "น้ำมะม่วง",
+    "translit": "nam mamuang",
+    "ru": "Манговый сок",
+    "photo": {
+      "url": "images/menu/328.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Mango_juice_at_Agasi,_Lajpat_Nagar,_Delhi_(2025-10-04).jpg",
+      "title": "Mango juice at Agasi, Lajpat Nagar, Delhi (2025-10-04).jpg",
+      "author": "Wikimedia Commons",
+      "license": "источник",
+      "remoteUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Mango_juice_at_Agasi%2C_Lajpat_Nagar%2C_Delhi_%282025-10-04%29.jpg/500px-Mango_juice_at_Agasi%2C_Lajpat_Nagar%2C_Delhi_%282025-10-04%29.jpg"
+    },
+    "category": "drink",
+    "tags": [
+      "Напитки",
+      "напиток"
+    ],
+    "words": [
+      {
+        "thai": "น้ำ",
+        "ru": "вода"
+      },
+      {
+        "thai": "มะม่วง",
+        "ru": "манго"
+      }
+    ]
+  },
+  {
+    "thai": "น้ำฝรั่ง",
+    "translit": "nam farang",
+    "ru": "Сок гуавы",
+    "photo": {
+      "url": "images/menu/329.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Fresh_Gvava_Juice.JPG",
+      "title": "Fresh Gvava Juice.JPG",
+      "author": "Wikimedia Commons",
+      "license": "источник",
+      "remoteUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Fresh_Gvava_Juice.JPG/500px-Fresh_Gvava_Juice.JPG"
+    },
+    "category": "drink",
+    "tags": [
+      "Напитки",
+      "напиток"
+    ],
+    "words": [
+      {
+        "thai": "น้ำ",
+        "ru": "вода"
+      },
+      {
+        "thai": "ฝรั่ง",
+        "ru": "иностранец"
+      }
+    ]
+  },
+  {
+    "thai": "น้ำลิ้นจี่",
+    "translit": "nam linchi",
+    "ru": "Сок личи",
+    "photo": {
+      "url": "images/menu/330.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Spring_rolls_and_lychee_juice_at_restaurant_Nam_Nam_in_Munich.jpg",
+      "title": "Spring rolls and lychee juice at restaurant Nam Nam in Munich.jpg",
+      "author": "Wikimedia Commons",
+      "license": "источник",
+      "remoteUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Spring_rolls_and_lychee_juice_at_restaurant_Nam_Nam_in_Munich.jpg/500px-Spring_rolls_and_lychee_juice_at_restaurant_Nam_Nam_in_Munich.jpg"
+    },
+    "category": "drink",
+    "tags": [
+      "Напитки",
+      "напиток"
+    ],
+    "words": [
+      {
+        "thai": "น้ำ",
+        "ru": "вода"
+      },
+      {
+        "thai": "ลิ้นจี่",
+        "ru": "Личи"
+      }
+    ]
+  },
+  {
+    "thai": "น้ำเสาวรส",
+    "translit": "nam saowarot",
+    "ru": "Сок маракуйи",
+    "photo": {
+      "url": "images/menu/331.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Cocktail_of_passion_fruit_juice_and_watermelon_juice_in_a_glass.jpg",
+      "title": "Cocktail of passion fruit juice and watermelon juice in a glass.jpg",
+      "author": "Wikimedia Commons",
+      "license": "источник",
+      "remoteUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Cocktail_of_passion_fruit_juice_and_watermelon_juice_in_a_glass.jpg/500px-Cocktail_of_passion_fruit_juice_and_watermelon_juice_in_a_glass.jpg"
+    },
+    "category": "drink",
+    "tags": [
+      "Напитки",
+      "напиток"
+    ],
+    "words": [
+      {
+        "thai": "น้ำ",
+        "ru": "вода"
+      },
+      {
+        "thai": "เสาวรส",
+        "ru": "маракуйя"
+      }
+    ]
+  },
+  {
+    "thai": "น้ำทับทิม",
+    "translit": "nam thapthim",
+    "ru": "Гранатовый сок",
+    "photo": {
+      "url": "images/menu/332.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Pomegranate_Juice_Fresh.JPG",
+      "title": "Pomegranate Juice Fresh.JPG",
+      "author": "Wikimedia Commons",
+      "license": "источник",
+      "remoteUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Pomegranate_Juice_Fresh.JPG/500px-Pomegranate_Juice_Fresh.JPG"
+    },
+    "category": "drink",
+    "tags": [
+      "Напитки",
+      "напиток"
+    ],
+    "words": [
+      {
+        "thai": "น้ำ",
+        "ru": "вода"
+      },
+      {
+        "thai": "ทับทิม",
+        "ru": "гранат"
+      }
+    ]
+  },
+  {
+    "thai": "น้ำอ้อย",
+    "translit": "nam oi",
+    "ru": "Свежий сок сахарного тростника",
+    "photo": {
+      "url": "images/menu/333.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Glass_of_sugarcane_juice.jpg",
+      "title": "Glass of sugarcane juice.jpg",
+      "author": "Wikimedia Commons",
+      "license": "источник",
+      "remoteUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Glass_of_sugarcane_juice.jpg/500px-Glass_of_sugarcane_juice.jpg"
+    },
+    "category": "drink",
+    "tags": [
+      "Напитки",
+      "напиток"
+    ],
+    "words": [
+      {
+        "thai": "น้ำ",
+        "ru": "вода"
+      },
+      {
+        "thai": "อ้อย",
+        "ru": "сахарный тростник"
+      }
+    ]
+  },
+  {
+    "thai": "น้ำลำไย",
+    "translit": "nam lamyai",
+    "ru": "Сладкий напиток из сушеного лонгана",
+    "photo": {
+      "url": "images/menu/334.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Longan_Free_use.jpg",
+      "title": "Longan Free use.jpg",
+      "author": "Wikimedia Commons",
+      "license": "источник",
+      "remoteUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Longan_Free_use.jpg?width=500"
+    },
+    "category": "drink",
+    "tags": [
+      "Напитки",
+      "напиток"
+    ],
+    "words": [
+      {
+        "thai": "น้ำ",
+        "ru": "вода"
+      },
+      {
+        "thai": "ลำไย",
+        "ru": "лонган"
+      }
+    ]
+  },
+  {
+    "thai": "แตงโมปั่น",
+    "translit": "taengmo pan",
+    "ru": "Арбузный смузи со льдом",
+    "photo": {
+      "url": "images/menu/335.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:2009-365-146_Water_Melon_Smoothie_(3570991499).jpg",
+      "title": "2009-365-146 Water Melon Smoothie (3570991499).jpg",
+      "author": "Wikimedia Commons",
+      "license": "источник",
+      "remoteUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/2009-365-146_Water_Melon_Smoothie_%283570991499%29.jpg/500px-2009-365-146_Water_Melon_Smoothie_%283570991499%29.jpg"
+    },
+    "category": "drink",
+    "tags": [
+      "Напитки",
+      "напиток"
+    ],
+    "words": [
+      {
+        "thai": "แตงโม",
+        "ru": "арбуз"
+      },
+      {
+        "thai": "ปั่น",
+        "ru": "смешивание"
+      }
+    ]
+  },
+  {
+    "thai": "มะม่วงปั่น",
+    "translit": "mamuang pan",
+    "ru": "Манговый смузи со льдом",
+    "photo": {
+      "url": "images/menu/336.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Fresh-mango-smoothie_01.jpg",
+      "title": "Fresh-mango-smoothie 01.jpg",
+      "author": "Wikimedia Commons",
+      "license": "источник",
+      "remoteUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Fresh-mango-smoothie_01.jpg/500px-Fresh-mango-smoothie_01.jpg"
+    },
+    "category": "drink",
+    "tags": [
+      "Напитки",
+      "напиток"
+    ],
+    "words": [
+      {
+        "thai": "มะม่วง",
+        "ru": "манго"
+      },
+      {
+        "thai": "ปั่น",
+        "ru": "смешивание"
+      }
+    ]
+  },
+  {
+    "thai": "กล้วยปั่น",
+    "translit": "kluai pan",
+    "ru": "Банановый смузи",
+    "photo": {
+      "url": "images/menu/337.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Banana_and_raspberry_smoothie_(14114450783).jpg",
+      "title": "Banana and raspberry smoothie (14114450783).jpg",
+      "author": "Wikimedia Commons",
+      "license": "источник",
+      "remoteUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Banana_and_raspberry_smoothie_%2814114450783%29.jpg/500px-Banana_and_raspberry_smoothie_%2814114450783%29.jpg"
+    },
+    "category": "drink",
+    "tags": [
+      "Напитки",
+      "напиток"
+    ],
+    "words": [
+      {
+        "thai": "กล้วย",
+        "ru": "банан"
+      },
+      {
+        "thai": "ปั่น",
+        "ru": "смешивание"
+      }
+    ]
+  },
+  {
+    "thai": "นมสด",
+    "translit": "nom sot",
+    "ru": "Свежее молоко",
+    "photo": {
+      "url": "images/menu/338.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Glass_of_Milk_(33657535532).jpg",
+      "title": "Glass of Milk (33657535532).jpg",
+      "author": "Wikimedia Commons",
+      "license": "источник",
+      "remoteUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Glass_of_Milk_%2833657535532%29.jpg/500px-Glass_of_Milk_%2833657535532%29.jpg"
+    },
+    "category": "drink",
+    "tags": [
+      "Напитки",
+      "напиток"
+    ],
+    "words": [
+      {
+        "thai": "นมสด",
+        "ru": "свежее молоко"
+      }
+    ]
+  },
+  {
+    "thai": "นมถั่วเหลือง",
+    "translit": "nom thua lueang",
+    "ru": "Соевое молоко",
+    "photo": {
+      "url": "images/menu/339.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Soy_milk_(2).jpg",
+      "title": "Soy milk (2).jpg",
+      "author": "Wikimedia Commons",
+      "license": "источник",
+      "remoteUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Soy_milk_%282%29.jpg/500px-Soy_milk_%282%29.jpg"
+    },
+    "category": "drink",
+    "tags": [
+      "Напитки",
+      "напиток"
+    ],
+    "words": [
+      {
+        "thai": "นม",
+        "ru": "молоко"
+      },
+      {
+        "thai": "ถั่ว",
+        "ru": "боб"
+      },
+      {
+        "thai": "เหลือง",
+        "ru": "желтый"
+      }
+    ]
+  },
+  {
+    "thai": "โยเกิร์ตดื่ม",
+    "translit": "yokoet duem",
+    "ru": "Питьевой йогурт",
+    "photo": {
+      "url": "images/menu/340.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:SZ_%E6%B7%B1%E5%9C%B3%E5%B8%82_Shenzhen_%E7%A6%8F%E7%94%B0_Futian_%E7%A6%8F%E4%B8%AD%E8%B7%AF_17_Fuzhong_Road_%E5%9C%8B%E9%9A%9B%E4%BA%BA%E6%89%8D%E5%A4%A7%E5%BB%88_Intl_Rencai_Building_%E8%8F%AF%E6%BD%A4%E8%90%AC%E5%AE%B6%E8%B6%85%E7%B4%9A%E5%B8%82%E5%A0%B4_Vanguard_Supermarket_Yoghurt_milk_plastic_bottles_Sept_2017_IX1.jpg",
+      "title": "SZ 深圳市 Shenzhen 福田 Futian 福中路 17 Fuzhong Road 國際人才大廈 Intl Rencai Building 華潤萬家超級市場 Vanguard Supermarket Yoghurt milk plastic bottles Sept 2017 IX1.jpg",
+      "author": "Wikimedia Commons",
+      "license": "источник",
+      "remoteUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/SZ_%E6%B7%B1%E5%9C%B3%E5%B8%82_Shenzhen_%E7%A6%8F%E7%94%B0_Futian_%E7%A6%8F%E4%B8%AD%E8%B7%AF_17_Fuzhong_Road_%E5%9C%8B%E9%9A%9B%E4%BA%BA%E6%89%8D%E5%A4%A7%E5%BB%88_Intl_Rencai_Building_%E8%8F%AF%E6%BD%A4%E8%90%AC%E5%AE%B6%E8%B6%85%E7%B4%9A%E5%B8%82%E5%A0%B4_Vanguard_Supermarket_Yoghurt_milk_plastic_bottles_Sept_2017_IX1.jpg/500px-thumbnail.jpg"
+    },
+    "category": "drink",
+    "tags": [
+      "Напитки",
+      "напиток"
+    ],
+    "words": [
+      {
+        "thai": "โย",
+        "ru": "Йо"
+      },
+      {
+        "thai": "เกิร์",
+        "ru": "Девочка"
+      },
+      {
+        "thai": "ตดื่ม",
+        "ru": "Пить"
+      }
+    ]
   }
 ];
