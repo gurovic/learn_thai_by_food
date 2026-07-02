@@ -515,6 +515,16 @@ function renderFoods() {
         <button class="speak-button" data-speak="${food.thai}" data-label="${food.thai}" type="button" aria-label="Произнести ${food.thai}">🔊</button>
       </div>
       <h4>${food.ru}</h4>
+      ${food.words?.length ? `
+        <div class="food-breakdown" aria-label="Перевод слов в названии">
+          ${food.words.map((word) => `
+            <span class="food-word">
+              <strong>${escapeMarkup(word.thai)}</strong>
+              <small>${escapeMarkup(word.ru)}</small>
+            </span>
+          `).join("")}
+        </div>
+      ` : ""}
       <p class="meta">${food.translit}</p>
       <span class="menu-category menu-category-${food.category || "dish"}">${menuCategoryLabels[food.category] || "Блюдо"}</span>
       <div class="tag-row">

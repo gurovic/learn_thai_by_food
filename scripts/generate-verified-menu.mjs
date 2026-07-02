@@ -72,6 +72,33 @@ const html = payload.parse.text;
 const headings = [...html.matchAll(/<h2[^>]*id="([^"]+)"[^>]*>[\s\S]*?<\/h2>/g)];
 const entries = [];
 const seenThai = new Set();
+const thaiSegmenter = new Intl.Segmenter("th", { granularity: "word" });
+const wordSegmentationOverrides = {
+  "ข้าวกั๊นจิ๊น": ["ข้าว", "กั๊น", "จิ๊น"],
+  "น้ำพันช์": ["น้ำ", "พันช์"]
+};
+const foodWordTranslations = {
+  "ผัด": "обжаривать в воке", "แกง": "карри", "หมู": "свинина", "ยำ": "острый салат",
+  "พริก": "чили", "ทอด": "жарить во фритюре", "ขนม": "закуска или десерт",
+  "กรอบ": "хрустящий", "ใส่": "добавлять", "คั่ว": "обжаривать без соуса", "ตำ": "толочь в ступке",
+  "ต้ม": "варить", "ไม้": "палочка или шпажка", "หน่อ": "молодой побег", "จิ้ม": "макать в соус",
+  "ใบ": "лист", "กั๊น": "смешивать", "จิ๊น": "мясо", "ซอย": "тонко нарезать", "หมก": "томить в обертке",
+  "หน้า": "с начинкой сверху", "อ่อน": "молодой или нежный", "รวม": "ассорти", "เส้น": "лапша",
+  "ทู": "скумбрия", "พล่า": "острый салат с травами", "ดาว": "яичница-глазунья",
+  "ส้ม": "кислый или апельсин", "เผา": "запекать на огне", "ไส้": "начинка или внутренности",
+  "ปิ้ง": "жарить на углях", "ลง": "добавлять", "เมา": "пьяный", "ฟัก": "тыква или зимняя дыня",
+  "บุ้ง": "водяной шпинат", "กาด": "листовая горчица", "ยอด": "молодые верхушки",
+  "ดอง": "маринованный", "มัน": "жирный или маслянистый", "ขา": "ножка", "คลุก": "перемешивать",
+  "เจียว": "жарить до золотистого", "ป่า": "лесной, без кокосового молока", "ขี้": "мелкий сорт",
+  "หวาน": "сладкий", "สด": "свежий", "เค็ม": "соленый", "เผ็ด": "острый"
+};
+
+function thaiWords(text) {
+  if (wordSegmentationOverrides[text]) return wordSegmentationOverrides[text];
+  return [...thaiSegmenter.segment(text)]
+    .filter((part) => part.isWordLike && /[\u0E00-\u0E7F]/u.test(part.segment))
+    .map((part) => part.segment);
+}
 
 for (let index = 0; index < headings.length; index += 1) {
   const section = headings[index][1];
@@ -168,9 +195,10 @@ try {
 } catch {}
 
 let translated = 0;
-async function translate(text) {
-  if (translations[text]) return translations[text];
-  const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=ru&dt=t&q=${encodeURIComponent(text)}`;
+async function translate(text, sourceLanguage = "en") {
+  const cacheKey = sourceLanguage === "en" ? text : `${sourceLanguage}:${text}`;
+  if (translations[cacheKey]) return translations[cacheKey];
+  const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=${sourceLanguage}&tl=ru&dt=t&q=${encodeURIComponent(text)}`;
   for (let attempt = 1; attempt <= 6; attempt += 1) {
     try {
       const result = await fetch(url, {
@@ -179,13 +207,13 @@ async function translate(text) {
       });
       if (!result.ok) throw new Error(`Translate HTTP ${result.status}`);
       const json = await result.json();
-      translations[text] = json[0].map((part) => part[0]).join("").trim();
+      translations[cacheKey] = json[0].map((part) => part[0]).join("").trim();
       translated += 1;
       if (translated % 25 === 0) {
         await writeFile(cachePath, JSON.stringify(translations, null, 2), "utf8");
         console.log(`Translated ${translated}`);
       }
-      return translations[text];
+      return translations[cacheKey];
     } catch (error) {
       if (attempt === 6) throw error;
       await new Promise((resolve) => setTimeout(resolve, attempt * 800));
@@ -237,6 +265,26 @@ async function worker() {
 }
 
 await Promise.all(Array.from({ length: 3 }, () => worker()));
+
+const uniqueThaiWords = [...new Set(entries.flatMap((entry) => thaiWords(entry.thai)))];
+const wordTranslations = new Map();
+cursor = 0;
+async function wordWorker() {
+  while (cursor < uniqueThaiWords.length) {
+    const word = uniqueThaiWords[cursor];
+    cursor += 1;
+    wordTranslations.set(word, await translate(word, "th"));
+    await new Promise((resolve) => setTimeout(resolve, 100));
+  }
+}
+
+await Promise.all(Array.from({ length: 3 }, () => wordWorker()));
+for (const entry of entries) {
+  entry.words = thaiWords(entry.thai).map((thai) => ({
+    thai,
+    ru: foodWordTranslations[thai] || wordTranslations.get(thai)
+  }));
+}
 await writeFile(cachePath, JSON.stringify(translations, null, 2), "utf8");
 entries.forEach((entry, index) => {
   const remoteUrl = entry.photo.url;

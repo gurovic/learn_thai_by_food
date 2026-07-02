@@ -474,6 +474,32 @@ h3 {
   line-height: 1.4;
 }
 
+.food-breakdown {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px 12px;
+  margin: 8px 0 10px;
+}
+
+.food-word {
+  display: grid;
+  gap: 1px;
+  padding-left: 8px;
+  border-left: 2px solid var(--broth);
+}
+
+.food-word strong {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.food-word small {
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.25;
+}
+
 .meta {
   color: var(--muted);
   font-size: 14px;
