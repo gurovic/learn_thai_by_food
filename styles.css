@@ -469,7 +469,9 @@ h3 {
 .mark-card h4,
 .food-card h4 {
   margin: 0 0 6px;
-  font-size: 20px;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.4;
 }
 
 .meta {

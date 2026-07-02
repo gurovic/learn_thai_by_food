@@ -86,14 +86,14 @@ for (let index = 0; index < headings.length; index += 1) {
     const thai = plainText(cells[1]);
     const englishName = plainText(cells[2]) || translit;
     const englishDescription = plainText(cells[5] || cells.at(-1));
-    const english = englishDescription || englishName;
     const photo = photoFromCell(cells[3]);
     if (!photo || !/[\u0E00-\u0E7F]/u.test(thai) || seenThai.has(thai)) continue;
     seenThai.add(thai);
     entries.push({
       thai,
       translit,
-      english,
+      englishName,
+      englishDescription,
       category: section === "Drinks" ? "drink" : "dish",
       section: sectionNames[section],
       photo
@@ -145,7 +145,10 @@ const supplementalDrinks = [
 ];
 
 const russianOverrides = {
-  "น้ำพันช์": "ледяной фруктовый пунш, иногда с добавлением алкоголя"
+  "ข้าวกั๊นจิ๊น": "рис со свиной кровью на пару в банановом листе",
+  "ข้าวมันไก่": "жирный рис с отварной курицей и бульоном",
+  "ข้าวเหนียว": "клейкий рис",
+  "น้ำพันช์": "ледяной фруктовый пунш, иногда с алкоголем"
 };
 
 for (const drink of supplementalDrinks) {
@@ -191,13 +194,43 @@ async function translate(text) {
 }
 
 let cursor = 0;
+function normalizedName(text = "") {
+  return text.toLowerCase().replace(/[^a-z0-9]+/g, "");
+}
+
+function firstSentence(text = "") {
+  const sentence = text.split(/(?<=[.!?])\s+/)[0].replace(/^(This is|These are)\s+/i, "").trim();
+  return sentence.length > 110 ? `${sentence.slice(0, 107).replace(/\s+\S*$/, "")}...` : sentence;
+}
+
+function conciseRussian(text = "") {
+  let result = text.replace(/[.!?]+$/, "").trim();
+  result = result.split(/(?<=[.!?])\s+/)[0];
+  result = result.replace(/\s*\(букв.*$/i, "");
+  result = result.replace(/^Название буквально означает\s+[«"](.+?)[»"]$/i, "$1");
+  if (result.length > 90) {
+    const boundaries = [...result.matchAll(/[,;:]/g)]
+      .map((match) => match.index)
+      .filter((index) => index >= 40 && index <= 90);
+    const end = boundaries.at(-1) || result.slice(0, 90).lastIndexOf(" ");
+    result = result.slice(0, end).replace(/[,;:]+$/, "");
+  }
+  return result ? result[0].toUpperCase() + result.slice(1) : result;
+}
+
 async function worker() {
   while (cursor < entries.length) {
     const entry = entries[cursor];
     cursor += 1;
-    entry.ru = russianOverrides[entry.thai] || entry.ru || await translate(entry.english);
+    const nameIsTransliteration = normalizedName(entry.englishName) === normalizedName(entry.translit);
+    const sourceText = nameIsTransliteration
+      ? firstSentence(entry.englishDescription || entry.englishName)
+      : entry.englishName;
+    entry.ru = russianOverrides[entry.thai] || entry.ru || await translate(sourceText);
+    entry.ru = conciseRussian(entry.ru);
     entry.tags = [entry.section, entry.category === "drink" ? "напиток" : "тайское блюдо"];
-    delete entry.english;
+    delete entry.englishName;
+    delete entry.englishDescription;
     delete entry.section;
     await new Promise((resolve) => setTimeout(resolve, 100));
   }
