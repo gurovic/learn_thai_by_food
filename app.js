@@ -616,22 +616,60 @@ function transcriptionScore(answer, expected) {
   return Math.max(0, Math.round((1 - distance / Math.max(left.length, right.length)) * 100));
 }
 
-function renderPracticeItem() {
+function preloadPracticeImage(src) {
+  return new Promise((resolve, reject) => {
+    const image = new Image();
+    image.onload = () => resolve(src);
+    image.onerror = reject;
+    image.src = src;
+  });
+}
+
+async function renderPracticeItem() {
   if (!practiceItems.length) return;
-  let nextIndex = Math.floor(Math.random() * practiceItems.length);
-  if (practiceItems.length > 1 && nextIndex === lastPracticeIndex) {
-    nextIndex = (nextIndex + 1) % practiceItems.length;
+  practiceNext.disabled = true;
+  practiceAnswer.disabled = true;
+  practiceImage.closest(".practice-photo").classList.add("is-loading");
+  practiceImage.removeAttribute("src");
+  practiceImage.alt = "";
+
+  const startIndex = Math.floor(Math.random() * practiceItems.length);
+  let loadedItem = null;
+  let loadedPhoto = null;
+  let loadedIndex = -1;
+  for (let offset = 0; offset < practiceItems.length; offset += 1) {
+    const candidateIndex = (startIndex + offset) % practiceItems.length;
+    if (practiceItems.length > 1 && candidateIndex === lastPracticeIndex) continue;
+    const candidate = practiceItems[candidateIndex];
+    const photo = getMenuPhoto(candidate);
+    try {
+      await preloadPracticeImage(photo.url);
+      loadedItem = candidate;
+      loadedPhoto = photo;
+      loadedIndex = candidateIndex;
+      break;
+    } catch {}
   }
-  lastPracticeIndex = nextIndex;
-  currentPracticeItem = practiceItems[nextIndex];
-  const photo = getMenuPhoto(currentPracticeItem);
-  practiceImage.src = photo.url;
+
+  practiceImage.closest(".practice-photo").classList.remove("is-loading");
+  if (!loadedItem) {
+    currentPracticeItem = null;
+    practiceThai.textContent = "Фото недоступно";
+    practiceRu.textContent = "Обновите страницу, чтобы попробовать загрузить задания снова.";
+    practiceNext.disabled = false;
+    return;
+  }
+
+  lastPracticeIndex = loadedIndex;
+  currentPracticeItem = loadedItem;
+  practiceImage.src = loadedPhoto.url;
   practiceImage.alt = currentPracticeItem.ru;
   practiceThai.textContent = currentPracticeItem.thai;
   practiceRu.textContent = currentPracticeItem.ru;
   practiceAnswer.value = "";
   practiceAnswer.disabled = false;
   practiceForm.querySelector("button").disabled = false;
+  practiceNext.disabled = false;
   practiceResult.hidden = true;
 }
 
@@ -867,8 +905,8 @@ practiceForm.addEventListener("submit", (event) => {
   checkPracticeAnswer();
 });
 
-practiceNext.addEventListener("click", () => {
-  renderPracticeItem();
+practiceNext.addEventListener("click", async () => {
+  await renderPracticeItem();
   practiceAnswer.focus();
 });
 

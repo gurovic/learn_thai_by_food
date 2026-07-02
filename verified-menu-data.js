@@ -1007,7 +1007,7 @@ window.verifiedMenuItems = [
       "license": "источник",
       "remoteUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Kuaichap.JPG/250px-Kuaichap.JPG"
     },
-    "ru": "Первоначально китайское блюдо Теочью (китайский",
+    "ru": "Рулоны рисовой лапши в перечном бульоне с субпродуктами",
     "tags": [
       "Отдельные блюда",
       "тайское блюдо"
@@ -1343,7 +1343,7 @@ window.verifiedMenuItems = [
       "license": "источник",
       "remoteUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Tom_yam_boran.jpg/250px-Tom_yam_boran.jpg"
     },
-    "ru": "Том ям боран — это лапша, подаваемая в густом кисло-остром соусе или бульоне с",
+    "ru": "Лапша в густом кисло-остром соусе или бульоне",
     "tags": [
       "Отдельные блюда",
       "тайское блюдо"
@@ -1639,7 +1639,7 @@ window.verifiedMenuItems = [
       "license": "источник",
       "remoteUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Chuchi_pla_thu_sot.jpg/250px-Chuchi_pla_thu_sot.jpg"
     },
-    "ru": "Полусухое карри, приготовленное из свежих (т.е",
+    "ru": "Свежая скумбрия в густом красном карри",
     "tags": [
       "Общие блюда",
       "тайское блюдо"
@@ -1831,7 +1831,7 @@ window.verifiedMenuItems = [
       "license": "источник",
       "remoteUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Kaeng_ho.jpg/250px-Kaeng_ho.jpg"
     },
-    "ru": "Блюдо Северного Таиланда, в котором один или несколько видов карри обжариваются со",
+    "ru": "Северное жареное карри со стеклянной лапшой",
     "tags": [
       "Общие блюда",
       "тайское блюдо"
@@ -1887,7 +1887,7 @@ window.verifiedMenuItems = [
       "license": "источник",
       "remoteUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Kaeng_khae-963.JPG/250px-Kaeng_khae-963.JPG"
     },
-    "ru": "Пряное карри из трав, овощей, листьев чаома (разновидность акации) и мяса (курица, вода",
+    "ru": "Северное карри из трав, овощей и мяса",
     "tags": [
       "Общие блюда",
       "тайское блюдо"
@@ -2103,7 +2103,7 @@ window.verifiedMenuItems = [
       "license": "источник",
       "remoteUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Kaeng_lueang.JPG/250px-Kaeng_lueang.JPG"
     },
-    "ru": "Кислый пряный карри, не содержащий кокосового молока и имеющий желтый цвет из-за",
+    "ru": "Южное кислое желтое карри без кокосового молока",
     "tags": [
       "Общие блюда",
       "тайское блюдо"
@@ -2255,7 +2255,7 @@ window.verifiedMenuItems = [
       "license": "источник",
       "remoteUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Kaeng_phak_kat_cho_kraduk_mu.jpg/250px-Kaeng_phak_kat_cho_kraduk_mu.jpg"
     },
-    "ru": "Несколько острый суп/карри (каенг), приготовленный из капусты (пхак кат чо",
+    "ru": "Несколько острый суп/карри (каенг), приготовленный из капусты",
     "tags": [
       "Общие блюда",
       "тайское блюдо"
@@ -2339,7 +2339,7 @@ window.verifiedMenuItems = [
       "license": "источник",
       "remoteUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Kaeng_phak_siangda.jpg/250px-Kaeng_phak_siangda.jpg"
     },
-    "ru": "Северо-тайское карри, приготовленное из листьев виноградной лозы Gymnema inodorum и",
+    "ru": "Северное карри с листьями гимнемы и сушеной рыбой",
     "tags": [
       "Общие блюда",
       "тайское блюдо"
@@ -2559,7 +2559,7 @@ window.verifiedMenuItems = [
       "license": "источник",
       "remoteUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Kaeng_tai_pla.JPG/250px-Kaeng_tai_pla.JPG"
     },
-    "ru": "Густое, острое овощное карри с куркумой, соусом из рыбных внутренностей (тай пла) и",
+    "ru": "Острое южное карри с овощами и соусом из рыбных внутренностей",
     "tags": [
       "Общие блюда",
       "тайское блюдо"
@@ -3171,7 +3171,7 @@ window.verifiedMenuItems = [
       "license": "источник",
       "remoteUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Tom_yuea_phai.jpg/250px-Tom_yuea_phai.jpg"
     },
-    "ru": "Это прозрачный бульон, среди прочих ингредиентов, содержащий юэа пхай («бамбуковый гриб»",
+    "ru": "Прозрачный суп с бамбуковым грибом",
     "tags": [
       "Общие блюда",
       "тайское блюдо"
@@ -3255,7 +3255,7 @@ window.verifiedMenuItems = [
       "license": "источник",
       "remoteUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/SpicyRawShrimpSalad.jpg/250px-SpicyRawShrimpSalad.jpg"
     },
-    "ru": "Тайский салат из свежих сырых креветок, пропитанных тайским рыбным соусом и подаваемых с",
+    "ru": "Сырые креветки в рыбном соусе с острой лаймовой заправкой",
     "tags": [
       "Общие блюда",
       "тайское блюдо"
@@ -3367,7 +3367,7 @@ window.verifiedMenuItems = [
       "license": "источник",
       "remoteUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Lap_nuea_dip.jpg/250px-Lap_nuea_dip.jpg"
     },
-    "ru": "Северо-тайский салат из нарезанной сырой говядины (версия на изображении также показывает",
+    "ru": "Северный острый салат из рубленой сырой говядины",
     "tags": [
       "Общие блюда",
       "тайское блюдо"
@@ -3783,7 +3783,7 @@ window.verifiedMenuItems = [
       "license": "источник",
       "remoteUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Tam_makhuea.JPG/250px-Tam_makhuea.JPG"
     },
-    "ru": "Нарезанные, а затем толченые длинные зеленые баклажаны на гриле (махуэа яо; тайский",
+    "ru": "Толченый салат из длинных зеленых баклажанов на гриле",
     "tags": [
       "Общие блюда",
       "тайское блюдо"
@@ -3839,7 +3839,7 @@ window.verifiedMenuItems = [
       "license": "источник",
       "remoteUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Tam_maphrao_on_sen_mi_krop_01.jpg/250px-Tam_maphrao_on_sen_mi_krop_01.jpg"
     },
-    "ru": "Салат в стиле сом там, приготовленный из мякоти молодого кокоса и подаваемый с хрустящими",
+    "ru": "Салат из молодого кокоса с хрустящей рисовой лапшой",
     "tags": [
       "Общие блюда",
       "тайское блюдо"
@@ -4047,7 +4047,7 @@ window.verifiedMenuItems = [
       "license": "источник",
       "remoteUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Yam_huapli_thot_02.jpg/250px-Yam_huapli_thot_02.jpg"
     },
-    "ru": "Острый тайский салат в стиле батата с обжаренными во фритюре кусочками цветов банана в",
+    "ru": "Острый салат с жареными цветками банана",
     "tags": [
       "Общие блюда",
       "тайское блюдо"
@@ -5175,7 +5175,7 @@ window.verifiedMenuItems = [
       "license": "источник",
       "remoteUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Mu_phat_sato_southern_style.jpg/250px-Mu_phat_sato_southern_style.jpg"
     },
-    "ru": "Острая южно-тайская версия муфат сато, в которой свинина и «вонючая фасоль» обжариваются",
+    "ru": "Южная свинина, обжаренная с бобами сато и чили",
     "tags": [
       "Общие блюда",
       "тайское блюдо"
@@ -6159,7 +6159,7 @@ window.verifiedMenuItems = [
       "license": "источник",
       "remoteUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/No_yat_sai_thot_01.jpg/250px-No_yat_sai_thot_01.jpg"
     },
-    "ru": "Фирменное блюдо северного Таиланда: обжаренные во фритюре побеги бамбука с начинкой из",
+    "ru": "Жареные побеги бамбука с мясной начинкой",
     "tags": [
       "Общие блюда",
       "тайское блюдо"
@@ -6195,7 +6195,7 @@ window.verifiedMenuItems = [
       "license": "источник",
       "remoteUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/2013_Pla_buang.jpg/250px-2013_Pla_buang.jpg"
     },
-    "ru": "Куски гигантской змееголовой рыбы (пла чадо) сначала солят и вялят на солнце в течение",
+    "ru": "Соленая вяленая змееголовая рыба",
     "tags": [
       "Общие блюда",
       "тайское блюдо"
@@ -6259,7 +6259,7 @@ window.verifiedMenuItems = [
       "license": "источник",
       "remoteUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Pla_nin_thot_samun_prai.jpg/250px-Pla_nin_thot_samun_prai.jpg"
     },
-    "ru": "Обжаренный во фритюре планин («Нильская Тилипия») подается с обжаренными во фритюре",
+    "ru": "Жареная тилапия с хрустящими травами",
     "tags": [
       "Общие блюда",
       "тайское блюдо"
@@ -6351,7 +6351,7 @@ window.verifiedMenuItems = [
       "license": "источник",
       "remoteUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Pla_sai_daeng_thot.jpg/250px-Pla_sai_daeng_thot.jpg"
     },
-    "ru": "Типичная для южно-тайской кухни, эта обжаренная во фритюре рыба сначала маринуется в",
+    "ru": "Южная жареная рыба с куркумой",
     "tags": [
       "Общие блюда",
       "тайское блюдо"
@@ -7159,7 +7159,7 @@ window.verifiedMenuItems = [
       "license": "источник",
       "remoteUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Mu_phalo.JPG/250px-Mu_phalo.JPG"
     },
-    "ru": "Яйцо, тушеное с мясом в соевом соусе, чесноком, имбирем и фонг-пхало (тайский: ผงพะโล้",
+    "ru": "Яйца и мясо в соевом бульоне с китайскими пряностями",
     "tags": [
       "Общие блюда",
       "тайское блюдо"
@@ -8163,7 +8163,7 @@ window.verifiedMenuItems = [
       "license": "источник",
       "remoteUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Miang_pla.jpg/250px-Miang_pla.jpg"
     },
-    "ru": "Как и в случае с Мианг Кхамом, основным ингредиентом этого ролла является жареная во",
+    "ru": "Рыба с травами и овощами для заворачивания в листья",
     "tags": [
       "Закуски",
       "тайское блюдо"
@@ -8887,7 +8887,7 @@ window.verifiedMenuItems = [
       "license": "источник",
       "remoteUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Khao_tom_mat_sai_kluai_01.jpg/250px-Khao_tom_mat_sai_kluai_01.jpg"
     },
-    "ru": "Блюдо готовится путем заворачивания сладкого банана и клейкого риса в банановый лист и",
+    "ru": "Клейкий рис с бананом на пару в банановом листе",
     "tags": [
       "Десерты",
       "тайское блюдо"
@@ -9055,7 +9055,7 @@ window.verifiedMenuItems = [
       "license": "источник",
       "remoteUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Sakhu_thua_dam.jpg/250px-Sakhu_thua_dam.jpg"
     },
-    "ru": "Жемчуг тапиоки и черные бобы (один из сортов винья) с подслащенным кокосовым молоком и",
+    "ru": "Тапиока и черные бобы в сладком кокосовом молоке",
     "tags": [
       "Десерты",
       "тайское блюдо"
