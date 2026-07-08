@@ -635,6 +635,7 @@ function renderNumbers() {
         <strong>${value}</strong>
         <span>${number.thai}</span>
         <small>${number.translit}</small>
+        <span class="number-card-speaker" aria-hidden="true">🔊</span>
       </button>
     `;
   }).join("");
@@ -1008,6 +1009,7 @@ numberGrid.addEventListener("click", (event) => {
   const card = event.target.closest("[data-number]");
   if (!card) return;
   updateNumberDisplay(card.dataset.number);
+  speakThai(numberThai.textContent, `цена ${numberArabic.textContent} бат`);
 });
 
 numberLoadMore.addEventListener("click", () => {

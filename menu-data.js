@@ -238,11 +238,26 @@
     item.categories = [...new Set([...(item.categories || []), "noodle"])];
   });
   const existingThai = new Set(verifiedMenuItems.map((item) => item.thai));
+  const verifiedByThai = new Map(verifiedMenuItems.map((item) => [item.thai, item]));
+  const noodlePhotoSource = (thai) => {
+    if (thai.includes("บะหมี่") || thai.includes("ราเม็ง") || thai.includes("อุด้ง") || thai.includes("โซบะ")) return "บะหมี่หมูแดง";
+    if (thai.includes("วุ้นเส้น")) return "ผัดวุ้นเส้น";
+    if (thai.includes("ขนมจีน")) return "ขนมจีนน้ำยา";
+    if (thai.includes("กวยจั๊บ") || thai.includes("ก๋วยจั๊บ")) return "กวยจั๊บ";
+    if (thai.includes("มาม่า")) return "ผัดมาม่า";
+    if (thai.includes("ราดหน้า")) return "ก๋วยเตี๋ยวราดหน้า";
+    if (thai.includes("ผัดขี้เมา")) return "ก๋วยเตี๋ยวผัดขี้เมา";
+    return "ก๋วยเตี๋ยวเรือ";
+  };
   const noodleItems = noodleCatalog
     .filter(([thai]) => !existingThai.has(thai))
-    .map(([thai, translit, ru]) => ({
-      thai, translit, ru, category: "noodle", categories: ["noodle"], tags: ["лапша", ru]
-    }));
+    .map(([thai, translit, ru]) => {
+      const representative = verifiedByThai.get(noodlePhotoSource(thai));
+      return {
+        thai, translit, ru, category: "noodle", categories: ["noodle"], tags: ["лапша", ru],
+        photo: representative?.photo ? { ...representative.photo } : undefined
+      };
+    });
   const menuItems = [
     ...verifiedMenuItems,
     ...noodleItems,

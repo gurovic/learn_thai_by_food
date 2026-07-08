@@ -929,6 +929,7 @@ select {
 }
 
 .number-card {
+  position: relative;
   display: grid;
   gap: 3px;
   min-width: 0;
@@ -940,6 +941,14 @@ select {
   color: var(--ink);
   background: var(--surface);
   text-align: left;
+}
+
+.number-card .number-card-speaker {
+  position: absolute;
+  top: 0.45rem;
+  right: 0.5rem;
+  font-size: 0.8rem;
+  line-height: 1;
 }
 
 .number-card:hover {
