@@ -901,7 +901,7 @@ window.verifiedMenuItems = [
   },
   {
     "thai": "ข้าวซอย",
-    "translit": "Khao soi Chang Mai",
+    "translit": "khao soi",
     "category": "dish",
     "photo": {
       "url": "images/menu/029.jpg",
@@ -918,12 +918,8 @@ window.verifiedMenuItems = [
     ],
     "words": [
       {
-        "thai": "ข้าว",
-        "ru": "рис"
-      },
-      {
-        "thai": "ซอย",
-        "ru": "тонко нарезать"
+        "thai": "ข้าวซอย",
+        "ru": "северная лапша с карри"
       }
     ]
   },

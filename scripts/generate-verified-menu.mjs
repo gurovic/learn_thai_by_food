@@ -76,6 +76,7 @@ const seenThai = new Set();
 const thaiSegmenter = new Intl.Segmenter("th", { granularity: "word" });
 const wordSegmentationOverrides = {
   "ข้าวกั๊นจิ๊น": ["ข้าว", "กั๊น", "จิ๊น"],
+  "ข้าวซอย": ["ข้าวซอย"],
   "น้ำพันช์": ["น้ำ", "พันช์"]
 };
 const foodWordTranslations = {
@@ -91,7 +92,8 @@ const foodWordTranslations = {
   "บุ้ง": "водяной шпинат", "กาด": "листовая горчица", "ยอด": "молодые верхушки",
   "ดอง": "маринованный", "มัน": "жирный или маслянистый", "ขา": "ножка", "คลุก": "перемешивать",
   "เจียว": "жарить до золотистого", "ป่า": "лесной, без кокосового молока", "ขี้": "мелкий сорт",
-  "หวาน": "сладкий", "สด": "свежий", "เค็ม": "соленый", "เผ็ด": "острый"
+  "หวาน": "сладкий", "สด": "свежий", "เค็ม": "соленый", "เผ็ด": "острый",
+  "ข้าวซอย": "северная лапша с карри"
 };
 
 function thaiWords(text) {
@@ -321,6 +323,10 @@ const russianOverrides = {
   "สาคูถั่วดำ": "тапиока и черные бобы в сладком кокосовом молоке"
 };
 
+const transliterationOverrides = {
+  "ข้าวซอย": "khao soi"
+};
+
 for (const drink of supplementalDrinks) {
   if (seenThai.has(drink.thai)) continue;
   seenThai.add(drink.thai);
@@ -400,6 +406,7 @@ async function worker() {
   while (cursor < entries.length) {
     const entry = entries[cursor];
     cursor += 1;
+    entry.translit = transliterationOverrides[entry.thai] || entry.translit;
     const nameIsTransliteration = normalizedName(entry.englishName) === normalizedName(entry.translit);
     const sourceText = nameIsTransliteration
       ? firstSentence(entry.englishDescription || entry.englishName)
