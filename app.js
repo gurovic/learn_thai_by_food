@@ -134,9 +134,11 @@ const menuCategoryCounts = menuItems.reduce((counts, item) => {
   counts[item.category] = (counts[item.category] || 0) + 1;
   return counts;
 }, {});
+menuCategoryCounts.noodle = menuItems.filter((item) => item.category === "noodle" || item.categories?.includes("noodle")).length;
 const menuCategoryLabels = {
   dish: "Блюдо",
   drink: "Напиток",
+  noodle: "Лапша",
   ingredient: "Ингредиент",
   method: "Приготовление"
 };
@@ -353,6 +355,16 @@ const phraseBreakdown = document.querySelector("#phraseBreakdown");
 const phraseRu = document.querySelector("#phraseRu");
 const markPhrase = document.querySelector("#markPhrase");
 const speechStatus = document.querySelector("#speechStatus");
+const numberValue = document.querySelector("#numberValue");
+const numberArabic = document.querySelector("#numberArabic");
+const numberThai = document.querySelector("#numberThai");
+const numberTranslit = document.querySelector("#numberTranslit");
+const numberRu = document.querySelector("#numberRu");
+const numberRange = document.querySelector("#numberRange");
+const numberGrid = document.querySelector("#numberGrid");
+const numberLoadMore = document.querySelector("#numberLoadMore");
+const numberPageSize = 40;
+let visibleNumbers = numberPageSize;
 const practiceItems = menuItems.filter((item) => item.category === "dish" && item.photo && item.translit);
 const practiceImage = document.querySelector("#practiceImage");
 const practiceThai = document.querySelector("#practiceThai");
@@ -373,6 +385,7 @@ let practiceAttemptCount = 0;
 const categoryOptionLabels = {
   dish: "Блюда",
   drink: "Напитки",
+  noodle: "Лапша",
   ingredient: "Ингредиенты",
   method: "Приготовление"
 };
@@ -545,11 +558,87 @@ function getFilteredMenuItems() {
   const category = foodCategory.value;
 
   return menuItems.filter((food) => {
-    if (category !== "all" && food.category !== category) return false;
+    if (category !== "all") {
+      const inCategory = food.category === category || food.categories?.includes(category);
+      if (!inCategory) return false;
+    }
     if (!query) return true;
     const text = `${food.thai} ${food.translit} ${food.ru} ${(food.tags || []).join(" ")}`.toLowerCase();
     return text.includes(query);
   });
+}
+
+const numberDigits = [
+  null,
+  { thai: "หนึ่ง", translit: "nueng" },
+  { thai: "สอง", translit: "song" },
+  { thai: "สาม", translit: "sam" },
+  { thai: "สี่", translit: "si" },
+  { thai: "ห้า", translit: "ha" },
+  { thai: "หก", translit: "hok" },
+  { thai: "เจ็ด", translit: "chet" },
+  { thai: "แปด", translit: "paet" },
+  { thai: "เก้า", translit: "kao" }
+];
+
+function thaiNumber(value) {
+  const number = Math.max(1, Math.min(1000, Number(value) || 1));
+  if (number === 1000) return { value: number, thai: "หนึ่งพัน", translit: "nueng phan" };
+  const thai = [];
+  const translit = [];
+  const hundreds = Math.floor(number / 100);
+  const tens = Math.floor((number % 100) / 10);
+  const ones = number % 10;
+  if (hundreds) {
+    thai.push(numberDigits[hundreds].thai, "ร้อย");
+    translit.push(numberDigits[hundreds].translit, "roi");
+  }
+  if (tens === 1) {
+    thai.push("สิบ");
+    translit.push("sip");
+  } else if (tens === 2) {
+    thai.push("ยี่สิบ");
+    translit.push("yi", "sip");
+  } else if (tens > 2) {
+    thai.push(numberDigits[tens].thai, "สิบ");
+    translit.push(numberDigits[tens].translit, "sip");
+  }
+  if (ones) {
+    const useEt = ones === 1 && number > 10;
+    thai.push(useEt ? "เอ็ด" : numberDigits[ones].thai);
+    translit.push(useEt ? "et" : numberDigits[ones].translit);
+  }
+  return { value: number, thai: thai.join(""), translit: translit.join(" ") };
+}
+
+function updateNumberDisplay(value = numberValue.value) {
+  const number = thaiNumber(value);
+  numberValue.value = number.value;
+  numberArabic.textContent = number.value;
+  numberThai.textContent = `${number.thai} บาท`;
+  numberTranslit.textContent = `${number.translit} bat`;
+  numberRu.textContent = `${number.value} бат`;
+}
+
+function selectedNumberRange() {
+  return numberRange.value.split("-").map(Number);
+}
+
+function renderNumbers() {
+  const [start, end] = selectedNumberRange();
+  const values = Array.from({ length: end - start + 1 }, (_, index) => start + index);
+  const shown = values.slice(0, visibleNumbers);
+  numberGrid.innerHTML = shown.map((value) => {
+    const number = thaiNumber(value);
+    return `
+      <button class="number-card" data-number="${value}" type="button">
+        <strong>${value}</strong>
+        <span>${number.thai}</span>
+        <small>${number.translit}</small>
+      </button>
+    `;
+  }).join("");
+  numberLoadMore.hidden = shown.length >= values.length;
 }
 
 function getMenuWordBlocks(food) {
@@ -710,7 +799,7 @@ function renderFoods() {
         <p class="thai-name">${food.thai}</p>
         <button class="speak-button" data-speak="${food.thai}" data-label="${food.thai}" type="button" aria-label="Произнести ${food.thai}">🔊</button>
       </div>
-      ${["ingredient", "method"].includes(food.category) ? `<p class="menu-item-translit">${escapeMarkup(food.translit)}</p>` : ""}
+      ${["ingredient", "method", "noodle"].includes(food.category) ? `<p class="menu-item-translit">${escapeMarkup(food.translit)}</p>` : ""}
       <h4>${food.ru}</h4>
       ${food.words?.length ? `
         <div class="food-breakdown" aria-label="Перевод слов в названии">
@@ -735,7 +824,7 @@ function renderFoods() {
     ? "во всех категориях"
     : `в категории «${menuCategoryLabels[foodCategory.value]}»`;
   menuStats.textContent = items.length === menuItems.length
-    ? `${menuItems.length} позиций: ${menuCategoryCounts.dish || 0} блюд, ${menuCategoryCounts.drink || 0} напитков, ${menuCategoryCounts.ingredient || 0} ингредиентов и ${menuCategoryCounts.method || 0} способов приготовления.`
+    ? `${menuItems.length} позиций: ${menuCategoryCounts.dish || 0} блюд, ${menuCategoryCounts.drink || 0} напитков, ${menuCategoryCounts.ingredient || 0} ингредиентов и ${menuCategoryCounts.method || 0} способов приготовления. В разделе «Лапша» — ${menuCategoryCounts.noodle || 0} позиций.`
     : `Найдено ${items.length} ${categoryText}. Показано ${shownItems.length}.`;
   foodLoadMore.hidden = shownItems.length >= items.length;
 }
@@ -900,6 +989,32 @@ foodLoadMore.addEventListener("click", () => {
   renderFoods();
 });
 
+numberValue.addEventListener("input", () => updateNumberDisplay());
+
+document.querySelector("#randomNumber").addEventListener("click", () => {
+  updateNumberDisplay(Math.floor(Math.random() * 1000) + 1);
+});
+
+document.querySelector("#numberSpeak").addEventListener("click", () => {
+  speakThai(numberThai.textContent, `цена ${numberArabic.textContent} бат`);
+});
+
+numberRange.addEventListener("change", () => {
+  visibleNumbers = numberPageSize;
+  renderNumbers();
+});
+
+numberGrid.addEventListener("click", (event) => {
+  const card = event.target.closest("[data-number]");
+  if (!card) return;
+  updateNumberDisplay(card.dataset.number);
+});
+
+numberLoadMore.addEventListener("click", () => {
+  visibleNumbers += numberPageSize;
+  renderNumbers();
+});
+
 practiceForm.addEventListener("submit", (event) => {
   event.preventDefault();
   checkPracticeAnswer();
@@ -929,6 +1044,8 @@ renderLetters();
 renderToneGuide();
 renderMarks();
 renderFoods();
+updateNumberDisplay();
+renderNumbers();
 renderPracticeItem();
 renderOrderOptions();
 updatePhrase();

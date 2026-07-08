@@ -13,6 +13,25 @@ await import(pathToFileURL(path.join(rootDir, "verified-menu-data.js")));
 await import(pathToFileURL(path.join(rootDir, "menu-data.js")));
 
 const texts = new Set(window.menuItems.map((item) => item.thai));
+
+const numberDigits = [null, "หนึ่ง", "สอง", "สาม", "สี่", "ห้า", "หก", "เจ็ด", "แปด", "เก้า"];
+function thaiNumber(value) {
+  if (value === 1000) return "หนึ่งพัน";
+  const parts = [];
+  const hundreds = Math.floor(value / 100);
+  const tens = Math.floor((value % 100) / 10);
+  const ones = value % 10;
+  if (hundreds) parts.push(numberDigits[hundreds], "ร้อย");
+  if (tens === 1) parts.push("สิบ");
+  else if (tens === 2) parts.push("ยี่สิบ");
+  else if (tens > 2) parts.push(numberDigits[tens], "สิบ");
+  if (ones) parts.push(ones === 1 && value > 10 ? "เอ็ด" : numberDigits[ones]);
+  return parts.join("");
+}
+
+for (let value = 1; value <= 1000; value += 1) {
+  texts.add(`${thaiNumber(value)} บาท`);
+}
 const thaiLiteral = /"([^"\r\n]*[\u0E00-\u0E7F][^"\r\n]*)"/gu;
 const onlyThai = /^[\u0E00-\u0E7F\s]+$/u;
 

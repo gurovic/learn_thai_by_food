@@ -21,6 +21,7 @@
           <nav class="mode-tabs" aria-label="Режимы обучения">
             <button class="tab is-active" data-view="letters" type="button">Буквы</button>
             <button class="tab" data-view="marks" type="button">Знаки</button>
+            <button class="tab" data-view="numbers" type="button">Числа</button>
             <button class="tab" data-view="foods" type="button">Меню</button>
             <button class="tab" data-view="practice" type="button">Упражнения</button>
             <button class="tab" data-view="order" type="button">Заказ</button>
@@ -68,6 +69,46 @@
             <div id="markGrid" class="mark-grid"></div>
           </section>
 
+          <section id="numbers" class="view">
+            <div class="section-head">
+              <div>
+                <h3>Числа и цены</h3>
+                <p>Тайские числительные от 1 до 1000: читай ценники и понимай стоимость заказа.</p>
+              </div>
+            </div>
+            <div class="number-reader">
+              <div class="number-picker">
+                <label for="numberValue">Цена в батах</label>
+                <div class="number-picker-row">
+                  <input id="numberValue" type="number" min="1" max="1000" value="25" inputmode="numeric">
+                  <button id="randomNumber" class="ghost-button" type="button">Случайная цена</button>
+                </div>
+              </div>
+              <div class="number-display" aria-live="polite">
+                <div class="number-amount"><strong id="numberArabic">25</strong><span>฿</span></div>
+                <div class="speak-line">
+                  <p id="numberThai" class="number-thai"></p>
+                  <button id="numberSpeak" class="speak-button" type="button" aria-label="Произнести цену">🔊</button>
+                </div>
+                <p id="numberTranslit" class="number-translit"></p>
+                <p id="numberRu" class="number-ru"></p>
+              </div>
+            </div>
+            <div class="number-list-head">
+              <label>
+                <span>Диапазон</span>
+                <select id="numberRange">
+                  <option value="1-20">1–20</option>
+                  <option value="21-100">21–100</option>
+                  <option value="101-500">101–500</option>
+                  <option value="501-1000">501–1000</option>
+                </select>
+              </label>
+            </div>
+            <div id="numberGrid" class="number-grid"></div>
+            <button id="numberLoadMore" class="load-more" type="button">Показать ещё</button>
+          </section>
+
           <section id="foods" class="view">
             <div class="section-head">
               <div>
@@ -85,6 +126,7 @@
                     <option value="all">Все</option>
                     <option value="dish">Блюда</option>
                     <option value="drink">Напитки</option>
+                    <option value="noodle">Лапша</option>
                     <option value="ingredient">Ингредиенты</option>
                     <option value="method">Приготовление</option>
                   </select>
@@ -194,7 +236,7 @@
     </main>
 
     <script src="verified-menu-data.js?v=20260702-4"></script>
-    <script src="menu-data.js?v=20260701-4"></script>
-    <script src="app.js?v=20260702-7"></script>
+    <script src="menu-data.js?v=20260708-1"></script>
+    <script src="app.js?v=20260708-1"></script>
   </body>
 </html>
